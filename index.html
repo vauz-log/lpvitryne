@@ -7,7 +7,7 @@
 <meta name="description" content="Vitryne centralise votre page pro, vos réservations en ligne, vos rappels automatiques et votre pilotage d'activité. Pour les professionnels du service sur rendez-vous.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231A1A1A'/%3E%3Cpath d='M8.5 8 L11 8 Q16 22.5 16 22.5 Q16 22.5 21 8 L23.5 8 L17.2 25.5 Q16 28.5 16 28.5 Q16 28.5 14.8 25.5 Z' fill='%23FDFCFA'/%3E%3Ccircle cx='16' cy='27' r='1.4' fill='%23B8976A'/%3E%3C/svg%3E">
 <style>
 /* ═══════════════════════════════════════════════
@@ -643,72 +643,102 @@ ul{list-style:none}
 .step-progress-line{position:absolute;left:24px;top:36px;width:2px;background:var(--gold);height:0;opacity:.6;z-index:1;transition:height .8s var(--ease-out-expo)}
 
 /* ═══════════════════════════════════════════════
-   INTERACTIVE DEMO
+   INTERACTIVE DEMO — HTW
    ═══════════════════════════════════════════════ */
-.idem-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:56px}
-.idem-steps{display:flex;flex-direction:column;gap:0;position:relative;padding-left:4px}
-.idem-progress-track{position:absolute;left:19px;top:28px;bottom:28px;width:2px;background:var(--border);border-radius:2px;z-index:0}
-.idem-progress-fill{width:100%;height:0%;background:linear-gradient(180deg,var(--gold),var(--success));border-radius:2px;transition:height .5s var(--ease-out-expo)}
-.idem-step{display:flex;gap:16px;padding:20px 20px 20px 0;border-radius:var(--r-lg);cursor:pointer;transition:background .3s,box-shadow .3s;position:relative;z-index:1}
-.idem-step:hover{background:var(--cream)}
-.idem-step.active{background:var(--cream);box-shadow:inset 0 0 0 1px var(--border)}
-.idem-num{width:40px;height:40px;flex-shrink:0;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;color:var(--text-tertiary);transition:all .35s var(--ease-out-expo);position:relative;z-index:1}
-.idem-step.active .idem-num{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 4px 16px var(--gold-glow)}
-.idem-body{flex:1;padding-top:4px}
-.idem-title{font-family:var(--font-display);font-size:1.05rem;color:var(--text-secondary);margin-bottom:6px;transition:color .3s;line-height:1.3}
-.idem-step.active .idem-title{color:var(--charcoal)}
-.idem-desc{font-size:13.5px;color:var(--text-tertiary);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s var(--ease-out-expo),opacity .3s}
-.idem-step.active .idem-desc{max-height:80px;opacity:1}
-.idem-step:not(.active) .idem-desc{opacity:0}
-.idem-badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--gold);margin-top:8px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s var(--ease-out-expo) .1s,opacity .3s .1s}
-.idem-step.active .idem-badge{max-height:30px;opacity:1}
+.htw-tabs{display:flex;gap:8px;margin-top:48px;justify-content:center;flex-wrap:wrap}
+.htw-tab{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 10px;border-radius:100px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:all .25s;color:var(--text-secondary);font-size:13px;font-weight:500;font-family:var(--font-body)}
+.htw-tab:hover{border-color:var(--gold-light);color:var(--charcoal)}
+.htw-tab.active{background:var(--charcoal);border-color:var(--charcoal);color:#fff}
+.htw-tab-n{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;background:var(--border);color:var(--text-tertiary);transition:all .25s}
+.htw-tab.active .htw-tab-n{background:rgba(255,255,255,.2);color:#fff}
+.htw-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:48px;align-items:start;margin-top:32px}
+.htw-infos{position:sticky;top:100px}
+.htw-info{display:none}
+.htw-info.active{display:block;animation:htw-info-in .35s var(--ease-out-expo) both}
+@keyframes htw-info-in{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+.htw-info-tag{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.htw-info-title{font-family:var(--font-display);font-size:1.55rem;color:var(--charcoal);margin-bottom:12px;line-height:1.25}
+.htw-info-desc{font-size:14px;color:var(--text-secondary);line-height:1.65;margin-bottom:20px}
+.htw-info-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--success);background:rgba(90,143,106,.08);border:1px solid rgba(90,143,106,.2);padding:7px 14px;border-radius:100px}
+.htw-dots-nav{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.htw-dot{width:7px;height:7px;border-radius:50%;border:none;background:var(--border);cursor:pointer;transition:all .25s;padding:0}
+.htw-dot.active{background:var(--charcoal);transform:scale(1.3)}
+/* Browser mockup */
+.htw-browser{border-radius:14px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.13),0 4px 16px rgba(0,0,0,.07);border:1px solid #D4CFC8}
+.htw-chrome{display:flex;align-items:center;gap:10px;padding:9px 14px;background:#EDEAE5;border-bottom:1px solid #D4CFC8}
+.htw-chrome-dots{display:flex;gap:5px;flex-shrink:0}
+.htw-chrome-dot{width:10px;height:10px;border-radius:50%}
+.htw-chrome-dot:nth-child(1){background:#EC6A5E}.htw-chrome-dot:nth-child(2){background:#F4BF4F}.htw-chrome-dot:nth-child(3){background:#61C454}
+.htw-url-bar{flex:1;background:#fff;border:1px solid #D4CFC8;border-radius:6px;padding:4px 10px;font-size:10.5px;color:#666;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:var(--font-body)}
+.htw-app{display:flex;height:420px;background:#F8F6F2}
+/* Sidebar */
+.htw-sidebar{width:148px;flex-shrink:0;background:#fff;border-right:1px solid #E8E4DF;display:flex;flex-direction:column;overflow:hidden;transition:width .35s var(--ease-out-expo)}
+.htw-sidebar.hide{width:0}
+.htw-sb-brand{padding:13px 12px 9px;border-bottom:1px solid #F0EDE8;flex-shrink:0}
+.htw-sb-logo{font-family:'Instrument Serif',Georgia,serif;font-size:13px;color:#1A1A1A;white-space:nowrap}
+.htw-sb-logo::after{content:'·';color:#B8976A;margin-left:2px}
+.htw-sb-sec{font-size:8.5px;font-weight:700;color:#C8C0B8;text-transform:uppercase;letter-spacing:.08em;padding:9px 12px 3px;white-space:nowrap;flex-shrink:0}
+.htw-sb-item{display:flex;align-items:center;gap:6px;padding:5px 10px 5px 12px;font-size:11px;color:#999;cursor:default;white-space:nowrap;border-radius:7px;margin:1px 4px;overflow:hidden;flex-shrink:0}
+.htw-sb-item.act{background:#F5EAD8;color:#8B6E4E;font-weight:600}
+.htw-sb-user{margin-top:auto;padding:9px 12px;border-top:1px solid #F0EDE8;display:flex;align-items:center;gap:7px;flex-shrink:0}
+.htw-sb-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.htw-sb-name{font-size:10px;font-weight:600;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Screens */
+.htw-screens{flex:1;overflow:hidden;position:relative}
+.htw-screen{display:none;height:100%;overflow-y:auto}
+.htw-screen.active{display:block}
+/* ── Screen animations ── */
+@keyframes htw-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes htw-popin{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes htw-slide-down{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes htw-blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes htw-pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(184,151,106,.5)}60%{box-shadow:0 0 0 6px rgba(184,151,106,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(90,143,106,.2)}50%{box-shadow:0 0 0 6px rgba(90,143,106,.06)}}
+.s1-cursor{animation:htw-blink 1s step-end infinite}
+/* Screen 1 */
+.playing .s1-f1{animation:htw-rise .4s .05s ease both}
+.playing .s1-f2{animation:htw-rise .4s .2s ease both}
+.playing .s1-f3{animation:htw-rise .4s .35s ease both}
+.playing .s1-f4{animation:htw-rise .4s .5s ease both}
+.playing .s1-f5{animation:htw-rise .4s .62s ease both}
+.playing .s1-f6{animation:htw-rise .4s .74s ease both}
+.playing .s1-saved{animation:htw-popin .4s .9s ease both}
+/* Screen 2 */
+.playing .s2-f1{animation:htw-rise .4s .1s ease both}
+.playing .s2-f2{animation:htw-rise .4s .3s ease both}
+.playing .s2-f3{animation:htw-rise .4s .5s ease both}
+.playing .s2-btn{animation:htw-rise .4s .7s ease both}
+.playing .s2-card{animation:htw-slide-down .45s 1.1s ease both}
+/* Screen 3 */
+.playing .s3-d1{animation:htw-popin .28s .1s ease both}
+.playing .s3-d2{animation:htw-popin .28s .24s ease both}
+.playing .s3-d3{animation:htw-popin .28s .38s ease both}
+.playing .s3-d4{animation:htw-popin .28s .52s ease both}
+.playing .s3-d5{animation:htw-popin .28s .66s ease both}
+.playing .s3-block{animation:htw-rise .35s .75s ease both}
+.playing .s3-slot1{animation:htw-popin .22s .95s ease both}
+.playing .s3-slot2{animation:htw-popin .22s 1.05s ease both}
+.playing .s3-slot3{animation:htw-popin .22s 1.15s ease both}
+.playing .s3-slot4{animation:htw-popin .22s 1.25s ease both}
+/* Screen 4 */
+.playing .s4-card{animation:htw-rise .4s .1s ease both}
+.playing .s4-slot1{animation:htw-popin .22s .6s ease both}
+.playing .s4-slot2{animation:htw-popin .22s .7s ease both}
+.playing .s4-slot3{animation:htw-popin .22s .8s ease both}
+.playing .s4-slot4{animation:htw-popin .22s .9s ease both}
+.playing .s4-confirm{animation:htw-rise .4s 1.05s ease both}
+.playing .s4-date{animation:htw-pulse-ring .7s 1.0s ease both}
+/* Screen 5 */
+.playing .s5-banner{animation:htw-slide-down .4s .1s ease both}
+.playing .s5-kpi1{animation:htw-rise .32s .3s ease both}
+.playing .s5-kpi2{animation:htw-rise .32s .42s ease both}
+.playing .s5-kpi3{animation:htw-rise .32s .54s ease both}
+.playing .s5-r1{animation:htw-rise .32s .68s ease both}
+.playing .s5-r2{animation:htw-rise .32s .8s ease both}
+.playing .s5-r3{animation:htw-rise .32s .92s ease both}
 
-/* Preview panel */
-.idem-preview{position:sticky;top:100px}
-.idem-screen{display:none;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.07),0 2px 8px rgba(0,0,0,.04);animation:idemFadeIn .32s var(--ease-out-expo)}
-.idem-screen.active{display:block}
-@keyframes idemFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.idem-screen-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:#FAFAF8;border-bottom:1px solid var(--border)}
-.idem-screen-dots{display:flex;gap:4px}
-.idem-screen-dots span{width:9px;height:9px;border-radius:50%}
-.idem-screen-dots span:nth-child(1){background:#F0766A}.idem-screen-dots span:nth-child(2){background:#F5C842}.idem-screen-dots span:nth-child(3){background:#5DBF6A}
-.idem-screen-url{font-size:10px;color:var(--text-tertiary);flex:1;text-align:center;background:var(--white);border:1px solid var(--border);border-radius:5px;padding:2px 12px}
-.idem-screen-body{padding:20px}
-
-/* Screen 1 — Onboarding */
-.idem-field{margin-bottom:12px}
-.idem-label{font-size:11px;font-weight:600;color:#888;margin-bottom:4px}
-.idem-input{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;color:var(--charcoal);background:#FAFAF9;font-family:var(--font-body)}
-.idem-input.typed{border-color:var(--gold-light);background:var(--gold-surface)}
-.idem-cursor{animation:blink .9s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.idem-btn{padding:12px 20px;background:var(--charcoal);color:#fff;border-radius:10px;font-size:13px;font-weight:600;text-align:center;cursor:pointer;transition:background .2s;font-family:var(--font-body)}
-.idem-btn:hover{background:#333}
-
-/* Screen 2 — Share */
-.idem-link-box{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--gold-surface);border:1.5px solid var(--gold-light);border-radius:10px}
-.idem-copy-btn{font-size:11px;font-weight:700;padding:5px 12px;background:var(--charcoal);color:#fff;border-radius:6px;cursor:pointer;white-space:nowrap;transition:background .2s}
-.idem-copy-btn:hover,.idem-copy-btn.copied{background:var(--success)}
-.idem-share-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
-.idem-share-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:transform .2s}
-.idem-share-item:hover{transform:translateY(-2px)}
-.idem-share-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.idem-qr-hint{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-tertiary);padding:8px 12px;background:var(--cream);border-radius:8px;border:1px solid var(--border)}
-
-/* Screen 3 — Dashboard */
-.idem-notif-banner{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(90deg,rgba(90,143,106,.06),rgba(90,143,106,.02));border-bottom:1px solid rgba(90,143,106,.12)}
-.idem-notif-pulse{width:10px;height:10px;border-radius:50%;background:var(--success);flex-shrink:0;box-shadow:0 0 0 3px rgba(90,143,106,.2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(90,143,106,.2)}50%{box-shadow:0 0 0 6px rgba(90,143,106,.08)}}
-.idem-kpi{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center}
-.idem-kpi-val{font-family:var(--font-display);font-size:1.1rem;color:var(--charcoal)}
-.idem-kpi-val.green{color:var(--success)}.idem-kpi-val.gold{color:var(--gold)}
-.idem-kpi-lbl{font-size:9px;color:var(--text-tertiary);margin-top:2px}
-.idem-next-rdv{padding:12px;background:#FAFAF8;border:1px solid var(--border);border-radius:10px}
-.idem-confirm-btn{font-size:10px;font-weight:700;padding:6px 12px;background:var(--gold);color:#fff;border-radius:6px;white-space:nowrap;cursor:pointer;transition:background .2s}
-.idem-confirm-btn:hover{background:#a07850}
-
-@media(max-width:900px){.idem-wrap{grid-template-columns:1fr;gap:32px}.idem-preview{position:static}}
-@media(max-width:600px){.idem-share-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:960px){.htw-wrap{grid-template-columns:1fr;gap:24px}.htw-infos{position:static}.htw-app{height:380px}}
+@media(max-width:600px){.htw-tabs{gap:5px}.htw-tab{font-size:11.5px;padding:7px 11px 7px 8px}.htw-app{height:340px}.htw-sidebar{width:110px}}
 
 /* ═══════════════════════════════════════════════
    SECTION : USE CASES
@@ -1085,65 +1115,77 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
 .vs-feat-icon svg{color:var(--success)}
 .vs-phone-wrap{display:flex;justify-content:center;align-items:flex-start;gap:20px}
 
-/* Vitrine card — no phone frame, clean floating card */
-.pv-card-wrap{width:420px;flex-shrink:0;transition:transform .6s var(--ease-out-expo)}
-.pv-card-wrap:hover{transform:translateY(-5px)}
+/* ── Phone frame ── */
+.pv-phone-frame{width:360px;aspect-ratio:390/844;flex-shrink:0;background:#13110F;border-radius:52px;padding:12px;box-shadow:0 48px 100px rgba(0,0,0,.34),0 12px 32px rgba(0,0,0,.20),inset 0 0 0 1px rgba(255,255,255,.07);position:relative;display:flex;flex-direction:column;transition:transform .6s var(--ease-out-expo)}
+.pv-phone-frame:hover{transform:translateY(-8px) rotate(-1deg)}
+.pv-phone-notch{width:90px;height:24px;background:#13110F;border-radius:0 0 16px 16px;position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:3}
+.pv-phone-statusbar{display:flex;align-items:center;justify-content:space-between;padding:6px 20px 4px;position:relative;z-index:2}
+.pv-phone-time{font-size:11px;font-weight:700;color:rgba(255,255,255,.88);letter-spacing:.02em;font-family:'DM Sans',sans-serif}
+.pv-phone-icons{display:flex;gap:4px;align-items:center}
+.pv-phone-screen{background:#fbf7ee;border-radius:42px;flex:1;overflow:hidden;scrollbar-width:none}
+.pv-phone-screen::-webkit-scrollbar{display:none}
 
-/* VitrinePublicView — clean card */
-.pv-outer{background:rgba(201,133,106,0.06);padding:16px;border-radius:28px;box-shadow:0 24px 64px rgba(0,0,0,.09),0 4px 16px rgba(0,0,0,.05)}
-.pv-card{background:white;border-radius:22px;overflow:hidden;border:1px solid rgba(255,220,200,0.35)}
+/* ── Prototype vars ── */
+.pv-phone-screen{--pv-ink:#191512;--pv-soft:#3b332d;--pv-muted:#7a7068;--pv-paper:#fffdf8;--pv-cream:#f7f2e8;--pv-sand:#eee4d5;--pv-accent:#C97B5A;--pv-accent2:#E8B183;--pv-line:rgba(25,21,18,.08);--pv-line-s:rgba(25,21,18,.14)}
 
-.pv-hero{padding:32px 24px 22px;text-align:center;background:linear-gradient(175deg,rgba(201,133,106,0.05) 0%,rgba(201,133,106,0.12) 60%,rgba(245,240,252,0.3) 100%);position:relative;overflow:hidden}
-.pv-hero::before{content:'';position:absolute;top:-24px;right:-24px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(201,133,106,0.3),transparent);pointer-events:none}
-.pv-hero::after{content:'';position:absolute;bottom:-16px;left:-16px;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle,rgba(201,133,106,0.2),transparent);pointer-events:none}
+/* ── Banner ── */
+.pv-banner{position:relative;height:165px;overflow:hidden;background:linear-gradient(150deg,#C97B5A 0%,#E8B183 100%);flex-shrink:0}
+.pv-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,21,18,0) 35%,rgba(25,21,18,.48) 100%)}
 
-.pv-av-wrap{position:relative;display:inline-block;margin-bottom:10px}
-.pv-av{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,0.75));display:flex;align-items:center;justify-content:center;color:white;font-size:30px;font-weight:700;box-shadow:0 0 0 4px #fff,0 0 0 6px rgba(201,133,106,0.22),0 8px 28px rgba(201,133,106,0.2)}
-.pv-av-dot{position:absolute;bottom:2px;right:2px;width:14px;height:14px;background:#4ade80;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+/* ── Content card ── */
+.pv-vc{position:relative;margin-top:-80px;border-radius:28px 28px 0 0;background:linear-gradient(180deg,rgba(255,253,248,.99) 0%,#fffdf8 18%);padding:20px 20px 0;box-shadow:0 -18px 32px -28px rgba(25,21,18,.44)}
+.pv-vc::before{content:"";position:absolute;top:10px;left:50%;transform:translateX(-50%);width:44px;height:4px;border-radius:999px;background:rgba(25,21,18,.1)}
 
-.pv-name{font-size:20px;font-weight:700;color:#111;margin-bottom:4px;letter-spacing:-.01em}
-.pv-tagline{font-size:12px;font-weight:600;color:#c9856a;margin-bottom:6px}
-.pv-loc{display:inline-flex;align-items:center;gap:3px;font-size:11px;color:#999;margin-bottom:10px}
+/* ── Top: avatar + infos ── */
+.pv-top{display:grid;grid-template-columns:68px 1fr;gap:15px;align-items:center;padding-top:10px}
+.pv-avatar{width:68px;height:68px;border-radius:22px;background:linear-gradient(135deg,#C97B5A,#E8B183);color:#fff;font-family:'Instrument Serif',Georgia,serif;font-size:26px;font-style:italic;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:0 16px 28px -18px rgba(25,21,18,.32),inset 0 1px 0 rgba(255,255,255,.7);flex-shrink:0}
+.pv-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-cat{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C97B5A;font-weight:700}
+.pv-name{margin-top:3px;font-family:'Instrument Serif',Georgia,serif;font-size:22px;line-height:1.04;letter-spacing:-.015em;color:var(--pv-ink)}
+.pv-loc{display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:12px;color:var(--pv-muted)}
+.pv-loc svg{width:11px;height:11px;flex-shrink:0}
 
-.pv-grating{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.88);border:1px solid rgba(0,0,0,.07);border-radius:100px;padding:3px 9px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.pv-g-g{font-size:9px;font-weight:800;color:#4285F4;line-height:1}
-.pv-g-score{font-size:9px;font-weight:700;color:#111}
-.pv-g-stars{display:flex;gap:1px;align-items:center}
-.pv-g-star{width:8px;height:8px;color:#FBBF24}
-.pv-g-count{font-size:8px;color:#aaa}
+/* ── Tagline ── */
+.pv-tagline{margin-top:13px;font-family:'Instrument Serif',Georgia,serif;font-size:14px;font-style:italic;line-height:1.5;color:var(--pv-soft)}
 
-.pv-bio{font-size:12.5px;color:#888;line-height:1.6;margin-bottom:14px;padding:0 12px}
+/* ── Google ── */
+.pv-google{display:inline-flex;align-items:center;gap:6px;margin-top:12px}
+.pv-g-score{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--pv-ink)}
+.pv-g-stars{display:flex;gap:1px}
+.pv-g-stars svg{width:9px;height:9px}
+.pv-g-sep{width:3px;height:3px;border-radius:999px;background:var(--pv-line-s);flex-shrink:0}
+.pv-g-count{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.04em;color:var(--pv-muted)}
 
-.pv-social-row{display:flex;gap:5px;justify-content:center;align-items:center;margin-bottom:10px}
-.pv-soc-btn{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.12);flex-shrink:0}
-.pv-soc-ig{background:linear-gradient(135deg,#833AB4,#FD1D1D,#FCAF45)}
-.pv-soc-tk{background:#000}
-.pv-soc-icon{width:10px;height:10px;fill:white}
-.pv-sep{width:1px;height:18px;background:#e5e7eb;flex-shrink:0}
-.pv-contact-btn{width:32px;height:32px;border-radius:10px;background:white;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* ── Social icons ── */
+.pv-socials{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pv-icon-btn{width:34px;height:34px;border-radius:10px;border:1px solid var(--pv-line-s);background:rgba(25,21,18,.06);display:grid;place-items:center;color:var(--pv-soft);flex-shrink:0}
+.pv-icon-btn svg{width:14px;height:14px}
+.pv-soc-sep{width:1px;height:20px;background:var(--pv-line-s);flex-shrink:0;margin:0 2px}
 
-.pv-cta{width:100%;padding:13px 14px;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,0.8));color:white;border:none;border-radius:14px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(201,133,106,0.38);font-family:inherit;transition:all .2s}
-.pv-cta:hover{transform:scale(0.98)}
+/* ── Stats ── */
+.pv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
+.pv-stat{background:var(--pv-cream);border:1px solid var(--pv-line);border-radius:14px;padding:10px 8px;text-align:center}
+.pv-stat-val{display:block;font-family:'Instrument Serif',Georgia,serif;font-size:17px;font-style:italic;color:var(--pv-ink);line-height:1}
+.pv-stat-lbl{display:block;font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--pv-muted);margin-top:4px}
 
-.pv-svcs{padding:20px 18px}
-.pv-svcs-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
-.pv-svcs-title{font-size:13px;font-weight:700;color:#111}
-.pv-svcs-count{font-size:9px;color:#aaa;background:#f3f4f6;padding:2px 7px;border-radius:100px;font-weight:600}
+/* ── CTA ── */
+.pv-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:16px;padding:14px 16px;border-radius:16px;background:var(--pv-ink);color:#fffdf8;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:-.01em;border:none;cursor:pointer;box-shadow:0 12px 22px -10px rgba(25,21,18,.40)}
 
-.pv-svc-row{display:flex;background:white;border-radius:14px;border:1px solid #f0f0f0;overflow:hidden;margin-bottom:7px;cursor:pointer;transition:transform .15s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-.pv-svc-row:hover{transform:scale(0.985)}
-.pv-svc-thumb{width:88px;min-height:88px;flex-shrink:0;display:flex;align-items:flex-start;justify-content:flex-start;padding:8px}
-.pv-svc-thumb.c1{background:linear-gradient(135deg,rgba(201,133,106,0.12),#f5f0fc)}
-.pv-svc-thumb.c2{background:linear-gradient(135deg,rgba(90,143,106,0.12),#f0f8f0)}
-.pv-svc-thumb.c3{background:linear-gradient(135deg,rgba(91,141,184,0.12),#f0f4f8)}
-.pv-price-badge{font-size:7.5px;font-weight:800;color:white;padding:2px 5px;border-radius:5px;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,0.85));box-shadow:0 1px 4px rgba(0,0,0,.14);white-space:nowrap}
-
-.pv-svc-body{flex:1;padding:9px 6px;min-width:0}
-.pv-svc-name{font-size:13.5px;font-weight:700;color:#111;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pv-svc-desc{font-size:11px;color:#aaa;margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pv-svc-tags{display:flex;gap:4px;flex-wrap:wrap}
-.pv-svc-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(201,133,106,0.1);color:#c9856a;border:1px solid rgba(201,133,106,0.18);display:inline-flex;align-items:center;gap:2px}
-.pv-chevron{display:flex;align-items:center;padding:0 10px;color:#d1d5db;font-size:15px}
+/* ── Services ── */
+.pv-svc-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;margin-bottom:10px}
+.pv-svc-htitle{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--pv-muted);font-weight:700}
+.pv-svc-hcount{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--pv-muted)}
+.pv-svc-list{display:flex;flex-direction:column;gap:8px;padding-bottom:28px}
+.pv-svc-row{display:grid;grid-template-columns:48px 1fr auto;gap:13px;align-items:center;padding:12px 14px;border-radius:16px;border:1px solid var(--pv-line);background:var(--pv-paper);cursor:pointer;width:100%}
+.pv-svc-thumb{width:48px;height:48px;border-radius:12px;overflow:hidden;position:relative;background:linear-gradient(135deg,#C97B5A,#E8B183);flex-shrink:0}
+.pv-svc-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-svc-name{font-size:13.5px;font-weight:700;color:var(--pv-ink);line-height:1.26;letter-spacing:-.006em}
+.pv-svc-meta{margin-top:3px;font-size:11px;color:var(--pv-muted)}
+.pv-svc-end{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.pv-svc-price{font-family:'Instrument Serif',Georgia,serif;font-size:14px;font-style:italic;color:var(--pv-ink);white-space:nowrap}
+.pv-svc-arrow{color:var(--pv-muted)}
+.pv-svc-arrow svg{width:10px;height:10px}
 
 /* Floating stat cards beside the phone */
 .vs-floats{display:flex;flex-direction:column;gap:10px}
@@ -1153,8 +1195,31 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
 .vs-float-title{font-size:12px;font-weight:700;color:var(--charcoal);margin-bottom:1px}
 .vs-float-sub{font-size:11px;color:var(--text-tertiary)}
 
-@media(max-width:960px){.vs-inner{grid-template-columns:1fr;gap:40px}.vs-phone-wrap{flex-wrap:wrap;justify-content:center}.vs-floats{flex-direction:row;flex-wrap:wrap}}
-@media(max-width:768px){.pv-card-wrap{width:100%;max-width:420px}.vitrine-showcase{padding:70px 0}}
+@media(max-width:960px){.vs-inner{grid-template-columns:1fr;gap:40px}.vs-phone-wrap{flex-wrap:wrap;justify-content:center}.vs-floats{flex-direction:row;flex-wrap:wrap}.vs-mockup-wrap{display:flex;justify-content:center}.vs-browser{max-width:100%}.vs-phone-overlay{position:relative!important;width:200px!important;right:auto;bottom:auto;margin-top:20px;margin-left:auto}}
+@media(max-width:768px){.pv-phone-frame{width:280px}.vitrine-showcase{padding:70px 0}}
+
+/* ═══════════════════════════════════════════════
+   QR CODE SECTION
+   ═══════════════════════════════════════════════ */
+.qr-section{padding:100px 0;background:var(--charcoal);position:relative;overflow:hidden}
+.qr-section::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,151,106,.12) 0%,transparent 70%);pointer-events:none}
+.qr-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.qr-features{display:flex;flex-direction:column;gap:16px;margin-top:36px}
+.qr-feat{display:flex;align-items:flex-start;gap:14px}
+.qr-feat-icon{width:34px;height:34px;border-radius:9px;background:rgba(184,151,106,.12);border:1px solid rgba(184,151,106,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);margin-top:2px}
+.qr-feat-text{font-size:15px;color:rgba(255,255,255,.72);line-height:1.55}
+.qr-visual-wrap{display:flex;justify-content:center;align-items:center;position:relative}
+.qr-card{background:#fff;border-radius:20px;padding:28px;display:flex;flex-direction:column;align-items:center;gap:16px;box-shadow:0 32px 80px rgba(0,0,0,.5);width:240px;position:relative}
+.qr-card-url{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--text-tertiary);text-transform:uppercase}
+.qr-code-wrap{position:relative;width:160px;height:160px}
+.qr-scan-line{position:absolute;left:4px;right:4px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:qrScan 2.4s ease-in-out infinite;border-radius:2px}
+@keyframes qrScan{0%{top:4px;opacity:0}10%{opacity:1}50%{top:calc(100% - 6px);opacity:1}90%{opacity:1}100%{top:calc(100% - 6px);opacity:0}}
+.qr-card-name{font-size:13px;font-weight:700;color:var(--charcoal)}
+.qr-card-cta{font-size:11px;color:var(--gold);font-weight:600}
+.qr-badge{position:absolute;top:-16px;right:-20px;background:var(--gold);color:#fff;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;box-shadow:0 8px 24px rgba(184,151,106,.45);white-space:nowrap}
+.qr-badge-bottom{position:absolute;bottom:-16px;left:-24px;background:var(--charcoal);border:1px solid rgba(255,255,255,.1);color:var(--text-on-dark);border-radius:10px;padding:8px 14px;font-size:12px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);white-space:nowrap}
+@media(max-width:960px){.qr-inner{grid-template-columns:1fr;gap:50px;text-align:center}.qr-features{align-items:center}.qr-feat{text-align:left}}
+@media(max-width:768px){.qr-section{padding:70px 0}.qr-inner{gap:40px}}
 </style>
 </head>
 <body>
@@ -1833,267 +1898,6 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   </div>
 </section>
 
-<!-- PROBLEM SECTION -->
-<section class="problem-section" id="problem">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="section-tag dark">Le problème</div>
-      <h2 class="section-title dark">Vous jonglez entre 5 outils<br>qui ne se parlent pas</h2>
-      <p class="section-desc dark" style="margin:0 auto">Google Agenda, WhatsApp, tableur, Instagram… Votre activité mérite mieux qu'un patchwork d'outils mal connectés.</p>
-    </div>
-    <div class="problem-grid">
-      <div class="p-card reveal d1">
-        <div class="p-icon">📱</div>
-        <h3>Outils éparpillés</h3>
-        <p>Vous passez plus de temps à copier-coller entre applications qu'à servir vos clients. Chaque outil fait un bout du travail, aucun ne fait le lien.</p>
-      </div>
-      <div class="p-card reveal d2">
-        <div class="p-icon">👻</div>
-        <h3>Rendez-vous oubliés</h3>
-        <p>Sans rappels automatiques, vos clients oublient. Résultat : des créneaux vides et du chiffre d'affaires perdu chaque semaine.</p>
-      </div>
-      <div class="p-card reveal d3">
-        <div class="p-icon">📉</div>
-        <h3>Aucune visibilité</h3>
-        <p>Combien de clients ce mois-ci ? Quel taux de remplissage ? Impossible de piloter ce qu'on ne mesure pas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRANSITION -->
-<div class="section-transition">
-  <div class="transition-pill">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-  </div>
-</div>
-
-<!-- BENEFITS (Bento Grid) -->
-<section class="benefits-section" id="benefits">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="section-tag light">La solution</div>
-      <h2 class="section-title light">Votre activité de pro du service,<br>enfin centralisée</h2>
-      <p class="section-desc light" style="margin:0 auto">Vitryne remplace votre patchwork d'outils par une seule plateforme pensée pour les professionnels qui travaillent sur rendez-vous.</p>
-    </div>
-    <div class="bento">
-      <div class="b-card w7 reveal-left d1">
-        <div class="b-icon ip">📅</div>
-        <h3>Agenda intelligent</h3>
-        <p>Tous vos rendez-vous dans un agenda pensé pour les pros du service. Synchronisé avec Google Calendar, créneaux configurables, vue jour/semaine/mois.</p>
-        <div class="b-visual" style="padding:0;overflow:hidden">
-          <div class="mini-agenda">
-            <div class="ma-topbar">
-              <div class="ma-nav">‹</div>
-              <div class="ma-month">Avril 2026</div>
-              <div class="ma-nav">›</div>
-              <div class="ma-today-btn">Aujourd'hui</div>
-            </div>
-            <div class="ma-heads">
-              <div class="ma-hd">L</div><div class="ma-hd">M</div><div class="ma-hd">M</div><div class="ma-hd">J</div><div class="ma-hd">V</div><div class="ma-hd wk">S</div><div class="ma-hd wk">D</div>
-            </div>
-            <div class="ma-body">
-              <div class="ma-cell"><div class="ma-dn gray">31</div></div>
-              <div class="ma-cell"><div class="ma-dn tod">1</div><div class="ma-ev c">9h Sophie M.</div><div class="ma-ev c">11h Marc D.</div></div>
-              <div class="ma-cell"><div class="ma-dn">2</div><div class="ma-ev p">10h Pierre L.</div></div>
-              <div class="ma-cell"><div class="ma-dn">3</div><div class="ma-ev c">9h30 Léa B.</div><div class="ma-ev c">13h Thomas R.</div></div>
-              <div class="ma-cell"><div class="ma-dn">4</div><div class="ma-ev p">11h Hugo W.</div><div class="ma-ev c">15h Camille</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">5</div><div class="ma-ev c">9h Inès R.</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">6</div></div>
-              <div class="ma-cell"><div class="ma-dn">7</div><div class="ma-ev c">10h Anna K.</div></div>
-              <div class="ma-cell"><div class="ma-dn">8</div><div class="ma-ev c">9h Nina S.</div><div class="ma-ev p">14h Lucas P.</div></div>
-              <div class="ma-cell"><div class="ma-dn">9</div><div class="ma-ev b">11h Yanis B.</div></div>
-              <div class="ma-cell"><div class="ma-dn">10</div><div class="ma-ev c">10h Sarah L.</div></div>
-              <div class="ma-cell"><div class="ma-dn">11</div><div class="ma-ev c">9h Emma V.</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">12</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">13</div></div>
-              <div class="ma-cell"><div class="ma-dn">14</div><div class="ma-ev c">9h30 Marie</div></div>
-              <div class="ma-cell"><div class="ma-dn">15</div><div class="ma-ev c">10h Julie F.</div><div class="ma-ev p">14h Romain</div></div>
-              <div class="ma-cell"><div class="ma-dn">16</div><div class="ma-ev b">11h Paul B.</div></div>
-              <div class="ma-cell"><div class="ma-dn">17</div><div class="ma-ev c">9h Ambre L.</div></div>
-              <div class="ma-cell"><div class="ma-dn">18</div><div class="ma-ev c">10h Diane P.</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">19</div></div>
-              <div class="ma-cell wk"><div class="ma-dn">20</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w5 reveal-right d2">
-        <div class="b-icon ig">🔗</div>
-        <h3>Réservation en ligne 24h/24</h3>
-        <p>Vos clients réservent eux-mêmes sur votre page pro. Rappels email et SMS automatiques. Fini les allers-retours WhatsApp.</p>
-        <div class="b-visual" style="padding:0;overflow:hidden">
-          <div class="bk-notif">
-            <div class="bk-notif-bar"><div class="bk-notif-dot"></div>Nouvelles réservations</div>
-            <div class="bk-notif-item">
-              <div class="bk-notif-av" style="background:linear-gradient(135deg,#c9856a,#a8705a)">SM</div>
-              <div class="bk-notif-body">
-                <div class="bk-notif-name">Sophie Martin</div>
-                <div class="bk-notif-sub">Séance découverte · Auj. 9h00</div>
-              </div>
-              <div class="bk-notif-tag conf">Confirmé</div>
-            </div>
-            <div class="bk-notif-item">
-              <div class="bk-notif-av" style="background:linear-gradient(135deg,#5B8DB8,#3a6a94)">HW</div>
-              <div class="bk-notif-body">
-                <div class="bk-notif-name">Hugo W.</div>
-                <div class="bk-notif-sub">Séance individuelle · Ven 9h30</div>
-              </div>
-              <div class="bk-notif-tag pend">En attente</div>
-            </div>
-            <div class="bk-notif-item">
-              <div class="bk-notif-av" style="background:linear-gradient(135deg,#5A8F6A,#3d7050)">LB</div>
-              <div class="bk-notif-body">
-                <div class="bk-notif-name">Léa Bernard</div>
-                <div class="bk-notif-sub">Atelier groupe · Sam 14h00</div>
-              </div>
-              <div class="bk-notif-tag conf">Confirmé</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w5 reveal-left d1">
-        <div class="b-icon ib">🌐</div>
-        <h3>Votre page pro en 5 minutes</h3>
-        <p>Créez une page professionnelle avec vos services, tarifs et lien de réservation. Aucune compétence technique requise.</p>
-        <div class="b-visual" style="padding:0;overflow:hidden">
-          <div class="pm-wrap">
-            <div class="pm-hero">
-              <div class="pm-av-wrap">
-                <div class="pm-av v2" style="width:42px;height:42px;border-radius:50%;background:var(--charcoal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-shadow:0 0 0 2px #fff,0 0 0 4px rgba(201,133,106,.3)">CL</div>
-                <div class="pm-online"></div>
-              </div>
-              <div class="pm-name" style="margin-top:7px">Claire Lambert</div>
-              <div class="pm-tag">✦ Sophrologue certifiée ✦</div>
-              <div class="pm-loc">
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                Paris 11e
-              </div>
-              <div class="pm-grating">
-                <span class="pm-g">G</span>
-                <span class="pm-gscore">4.9</span>
-                <div class="pm-gstars">
-                  <svg class="pm-gstar" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg class="pm-gstar" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg class="pm-gstar" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg class="pm-gstar" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg class="pm-gstar" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
-                <span class="pm-gcount">382 avis</span>
-              </div>
-              <div class="pm-social">
-                <div class="pm-soc" style="background:linear-gradient(135deg,#833AB4,#FD1D1D,#FCAF45)"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-                <div class="pm-soc" style="background:#000"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></div>
-                <div class="pm-soc" style="background:#fff;border:1px solid #eee"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.26 6.26l1.19-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-              </div>
-              <div class="pm-cta">Voir les disponibilités →</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w7 reveal-right d2">
-        <div class="b-icon io">📊</div>
-        <h3>Pilotage d'activité</h3>
-        <p>Suivez vos KPIs en temps réel : réservations, taux de remplissage, CA, clients récurrents. Prenez les bonnes décisions au bon moment.</p>
-        <div class="b-visual" style="padding:0;overflow:hidden">
-          <div class="kpi-panel">
-            <div class="kpi-section-lbl">Cette semaine</div>
-            <div class="kpi-row"><span class="kpi-row-label">Réservations</span><span class="kpi-row-val">24</span></div>
-            <div class="kpi-row"><span class="kpi-row-label">Remplissage</span><span class="kpi-row-val green">87%</span></div>
-            <div class="kpi-row"><span class="kpi-row-label">CA estimé</span><span class="kpi-row-val gold">1 680 €</span></div>
-            <div class="kpi-divider"></div>
-            <div class="kpi-section-lbl">Activité récente</div>
-            <div class="kpi-activity-item">
-              <div class="kpi-activity-icon v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
-              <div class="kpi-activity-text"><strong>Sophie M.</strong> a confirmé son RDV</div>
-            </div>
-            <div class="kpi-activity-item">
-              <div class="kpi-activity-icon n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-              <div class="kpi-activity-text"><strong>Nouveau RDV</strong> Hugo W. · Ven 4 à 11h</div>
-            </div>
-            <div class="kpi-activity-item">
-              <div class="kpi-activity-icon v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
-              <div class="kpi-activity-text"><strong>Léa B.</strong> a laissé un avis ★★★★★</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w4 reveal d1">
-        <div class="b-icon ig">⚡</div>
-        <h3>Rappels automatiques</h3>
-        <p>SMS et emails envoyés automatiquement. Réduisez significativement les oublis de rendez-vous sans lever le petit doigt.</p>
-        <div class="b-visual-mini">
-          <div class="b-reminder-line">
-            <span class="b-rl-dot sms"></span>
-            <span>SMS — J-1 à 18h</span>
-            <span class="b-rl-time">Envoyé ✓</span>
-          </div>
-          <div class="b-reminder-line">
-            <span class="b-rl-dot email"></span>
-            <span>Email — J-2 à 9h</span>
-            <span class="b-rl-time">Envoyé ✓</span>
-          </div>
-          <div class="b-reminder-line">
-            <span class="b-rl-dot whatsapp"></span>
-            <span>Rappel — H-2</span>
-            <span class="b-rl-time">Planifié</span>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w4 reveal d2">
-        <div class="b-icon ip">🧩</div>
-        <h3>Widgets intégrables</h3>
-        <p>Ajoutez un bouton de réservation sur votre site ou vos réseaux en un clic. Vos clients réservent sans quitter votre page.</p>
-        <div class="b-visual-mini">
-          <div class="bsl-wrap">
-            <div class="bsl-topbar">
-              <div class="bsl-dots"><span></span><span></span><span></span></div>
-              <div class="bsl-url">vitryne.fr/claire-l</div>
-            </div>
-            <div class="bsl-body">
-              <div class="bsl-header">
-                <svg class="bsl-date-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                <span class="bsl-date">Mardi 1 avril</span>
-              </div>
-              <div class="bsl-sub">Sélectionnez une heure</div>
-              <div class="bsl-grid">
-                <div class="bsl-slot sel">9h00</div>
-                <div class="bsl-slot">10h30</div>
-                <div class="bsl-slot">11h00</div>
-                <div class="bsl-slot">14h00</div>
-                <div class="bsl-slot">15h30</div>
-                <div class="bsl-slot">16h00</div>
-                <div class="bsl-slot">17h30</div>
-                <div class="bsl-slot">18h00</div>
-              </div>
-              <div class="bsl-btn">Réserver · Séance découverte · 35€</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-card w4 reveal d3">
-        <div class="b-icon ib">💳</div>
-        <h3>Paiement en ligne</h3>
-        <p>Encaissez à la réservation via Stripe. Acomptes, prépaiements, factures automatiques.</p>
-        <div class="b-visual-mini">
-          <div class="b-pay-chips">
-            <span class="b-pay-chip">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-              Stripe
-            </span>
-            <span class="b-pay-chip">💶 Acompte</span>
-            <span class="b-pay-chip">🧾 Facture auto</span>
-          </div>
-          <div class="b-pay-secure">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
-            Paiements sécurisés · Conformes PCI DSS
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- VITRINE SHOWCASE — Vue client (page pro publique) -->
 <section class="vitrine-showcase" id="page-pro">
   <div class="container">
@@ -2134,107 +1938,103 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
         </div>
       </div>
 
-      <!-- Right: vitrine card + floating cards -->
+      <!-- Right: phone mockup -->
       <div class="vs-phone-wrap reveal-right">
 
-        <!-- Clean vitrine card — no phone frame -->
-        <div class="pv-card-wrap">
-          <div class="pv-outer">
-            <div class="pv-card">
+        <div class="pv-phone-frame">
+          <div class="pv-phone-notch"></div>
+          <div class="pv-phone-statusbar">
+            <span class="pv-phone-time">9:41</span>
+            <div class="pv-phone-icons">
+              <svg width="10" height="7" viewBox="0 0 24 16" fill="rgba(255,255,255,0.82)"><rect x="0" y="4" width="4" height="12" rx="1"/><rect x="6" y="2" width="4" height="14" rx="1"/><rect x="12" y="0" width="4" height="16" rx="1"/><rect x="18" y="0" width="4" height="16" rx="1" opacity=".3"/></svg>
+              <svg width="12" height="8" viewBox="0 0 24 18" fill="rgba(255,255,255,0.82)"><path d="M12 3C7.95 3 4.21 4.34 1.2 6.6L3 9a14.44 14.44 0 0 1 18 0l1.8-2.4C19.79 4.34 16.05 3 12 3zm0 6c-2.76 0-5.26 1.12-7.08 2.92L6.7 14a8.5 8.5 0 0 1 10.6 0l1.78-2.08A11.45 11.45 0 0 0 12 9zm0 6a3 3 0 0 0-2.12.88L12 18l2.12-2.12A3 3 0 0 0 12 15z"/></svg>
+              <svg width="20" height="8" viewBox="0 0 44 18" fill="none"><rect x="0" y="1" width="38" height="16" rx="4" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/><rect x="39" y="5" width="4" height="8" rx="2" fill="rgba(255,255,255,0.35)"/><rect x="1.75" y="2.75" width="32" height="12.5" rx="2.5" fill="rgba(255,255,255,0.82)"/></svg>
+            </div>
+          </div>
+          <div class="pv-phone-screen">
 
-                <!-- Hero section — exact replica of VitrinePublicView mobile hero -->
-                <div class="pv-hero">
-                  <div class="pv-av-wrap">
-                    <div class="pv-av">CL</div>
-                    <div class="pv-av-dot"></div>
-                  </div>
-                  <div class="pv-name">Claire Lambert</div>
-                  <div class="pv-tagline">✦ Sophrologue certifiée ✦</div>
+            <!-- Banner -->
+            <div class="pv-banner">
+              <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80" alt="" />
+            </div>
+
+            <!-- Content card -->
+            <div class="pv-vc">
+
+              <div class="pv-top">
+                <div class="pv-avatar">S</div>
+                <div>
+                  <div class="pv-cat">Yoga · Bien-être</div>
+                  <div class="pv-name">Sara Lemaire</div>
                   <div class="pv-loc">
-                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     Paris 11e
                   </div>
-                  <!-- Google rating pill -->
-                  <div class="pv-grating">
-                    <span class="pv-g-g">G</span>
-                    <span class="pv-g-score">4.9</span>
-                    <div class="pv-g-stars">
-                      <svg class="pv-g-star" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg class="pv-g-star" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg class="pv-g-star" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg class="pv-g-star" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                      <svg class="pv-g-star" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <span class="pv-g-count">382 avis</span>
-                  </div>
-                  <div class="pv-bio">Accompagnement sophrologique personnalisé pour retrouver calme et équilibre au quotidien.</div>
-                  <!-- Social row -->
-                  <div class="pv-social-row">
-                    <div class="pv-soc-btn pv-soc-ig">
-                      <svg class="pv-soc-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </div>
-                    <div class="pv-soc-btn pv-soc-tk">
-                      <svg class="pv-soc-icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                    </div>
-                    <div class="pv-sep"></div>
-                    <div class="pv-contact-btn">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.26 6.26l1.19-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div class="pv-contact-btn">
-                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </div>
-                  </div>
-                  <button class="pv-cta">Voir les disponibilités →</button>
                 </div>
+              </div>
 
-                <!-- Services list — exact replica of VitrinePublicView service cards -->
-                <div class="pv-svcs">
-                  <div class="pv-svcs-hdr">
-                    <span class="pv-svcs-title">Mes prestations</span>
-                    <span class="pv-svcs-count">3</span>
-                  </div>
-                  <div class="pv-svc-row">
-                    <div class="pv-svc-thumb c1"><span class="pv-price-badge">35 €</span></div>
-                    <div class="pv-svc-body">
-                      <div class="pv-svc-name">Séance découverte</div>
-                      <div class="pv-svc-desc">Premier RDV, découverte sophrologie</div>
-                      <div class="pv-svc-tags">
-                        <span class="pv-svc-tag"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>30 min</span>
-                        <span class="pv-svc-tag">En cabinet</span>
-                      </div>
-                    </div>
-                    <div class="pv-chevron">›</div>
-                  </div>
-                  <div class="pv-svc-row">
-                    <div class="pv-svc-thumb c2"><span class="pv-price-badge">70 €</span></div>
-                    <div class="pv-svc-body">
-                      <div class="pv-svc-name">Séance individuelle</div>
-                      <div class="pv-svc-desc">Accompagnement complet, suivi perso.</div>
-                      <div class="pv-svc-tags">
-                        <span class="pv-svc-tag"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1h</span>
-                        <span class="pv-svc-tag">Sur place</span>
-                      </div>
-                    </div>
-                    <div class="pv-chevron">›</div>
-                  </div>
-                  <div class="pv-svc-row">
-                    <div class="pv-svc-thumb c3"><span class="pv-price-badge">Devis</span></div>
-                    <div class="pv-svc-body">
-                      <div class="pv-svc-name">Atelier groupe</div>
-                      <div class="pv-svc-desc">Séance collective relaxation</div>
-                      <div class="pv-svc-tags">
-                        <span class="pv-svc-tag"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2h</span>
-                        <span class="pv-svc-tag">À domicile</span>
-                      </div>
-                    </div>
-                    <div class="pv-chevron">›</div>
-                  </div>
+              <p class="pv-tagline">Professeure de yoga certifiée · cours collectifs et accompagnement individuel.</p>
+
+              <div class="pv-google">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="pv-g-score">4.9</span>
+                <div class="pv-g-stars">
+                  <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 </div>
+                <span class="pv-g-sep"></span>
+                <span class="pv-g-count">382 avis</span>
+              </div>
 
-            </div><!-- /pv-card -->
-          </div><!-- /pv-outer -->
-        </div><!-- /pv-card-wrap -->
+              <div class="pv-socials">
+                <a href="#" class="pv-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                <a href="#" class="pv-icon-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+                <div class="pv-soc-sep"></div>
+                <a href="#" class="pv-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.45 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.26 6.26l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+                <a href="#" class="pv-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+              </div>
 
+              <div class="pv-stats">
+                <div class="pv-stat"><span class="pv-stat-val">8 ans</span><span class="pv-stat-lbl">d'expérience</span></div>
+                <div class="pv-stat"><span class="pv-stat-val">500+</span><span class="pv-stat-lbl">élèves formés</span></div>
+                <div class="pv-stat"><span class="pv-stat-val">4.9 ★</span><span class="pv-stat-lbl">note moyenne</span></div>
+              </div>
+
+              <div style="height:1px;background:rgba(25,21,18,.08);margin-top:18px"></div>
+
+              <button class="pv-cta">
+                Choisir une prestation
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+
+              <div class="pv-svc-hdr">
+                <span class="pv-svc-htitle">Prestations</span>
+                <span class="pv-svc-hcount">3 disponibles</span>
+              </div>
+              <div class="pv-svc-list">
+                <div class="pv-svc-row">
+                  <div class="pv-svc-thumb"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=120&q=80" alt="" /></div>
+                  <div><div class="pv-svc-name">Cours collectif</div><div class="pv-svc-meta">75 min · Studio Paris 11e</div></div>
+                  <div class="pv-svc-end"><span class="pv-svc-price">25 €</span><span class="pv-svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span></div>
+                </div>
+                <div class="pv-svc-row">
+                  <div class="pv-svc-thumb"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=120&q=80" alt="" /></div>
+                  <div><div class="pv-svc-name">Séance privée</div><div class="pv-svc-meta">60 min · Studio ou en ligne</div></div>
+                  <div class="pv-svc-end"><span class="pv-svc-price">75 €</span><span class="pv-svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span></div>
+                </div>
+                <div class="pv-svc-row">
+                  <div class="pv-svc-thumb" style="background:linear-gradient(135deg,#C97B5A,#E8B183)"></div>
+                  <div><div class="pv-svc-name">Atelier groupe</div><div class="pv-svc-meta">2h · À domicile</div></div>
+                  <div class="pv-svc-end"><span class="pv-svc-price">Sur devis</span><span class="pv-svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span></div>
+                </div>
+              </div>
+
+            </div><!-- /pv-vc -->
+          </div><!-- /pv-phone-screen -->
+        </div><!-- /pv-phone-frame -->
 
       </div><!-- /vs-phone-wrap -->
     </div><!-- /vs-inner -->
@@ -2250,383 +2050,512 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
       <p class="section-desc light" style="margin:0 auto">Pas de formation. Pas de migration complexe. Créez votre espace et vos clients réservent dès aujourd'hui.</p>
     </div>
 
-    <div class="idem-wrap reveal">
-      <!-- Steps list -->
-      <div class="idem-steps">
-        <div class="idem-step active" data-step="1">
-          <div class="idem-num">1</div>
-          <div class="idem-body">
-            <div class="idem-title">Créez votre espace gratuitement</div>
-            <div class="idem-desc">Un email, un mot de passe. Décrivez votre activité, vos créneaux, personnalisez votre page pro. Aucune compétence technique requise.</div>
-            <div class="idem-badge">⏱ 2 minutes chrono</div>
-          </div>
+    <!-- Step tabs -->
+    <div class="htw-tabs reveal">
+      <button class="htw-tab active" data-htw="1"><span class="htw-tab-n">1</span>Ma vitrine</button>
+      <button class="htw-tab" data-htw="2"><span class="htw-tab-n">2</span>Mes prestations</button>
+      <button class="htw-tab" data-htw="3"><span class="htw-tab-n">3</span>Disponibilités</button>
+      <button class="htw-tab" data-htw="4"><span class="htw-tab-n">4</span>Vos clients réservent</button>
+      <button class="htw-tab" data-htw="5"><span class="htw-tab-n">5</span>Revenus &amp; agenda</button>
+    </div>
+
+    <div class="htw-wrap reveal">
+      <!-- Info panels (left) -->
+      <div class="htw-infos">
+        <div class="htw-info active" data-htw="1">
+          <div class="htw-info-tag">Étape 1 · 2 min</div>
+          <h3 class="htw-info-title">Créez votre vitrine professionnelle</h3>
+          <p class="htw-info-desc">Nom, photo, accroche et couleur de marque. Votre identité pro en ligne en moins de 2 minutes — aucune compétence technique requise.</p>
+          <div class="htw-info-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Votre page est publiée instantanément</div>
         </div>
-        <div class="idem-step" data-step="2">
-          <div class="idem-num">2</div>
-          <div class="idem-body">
-            <div class="idem-title">Partagez votre lien</div>
-            <div class="idem-desc">Copiez votre lien unique et diffusez-le en bio Instagram, signature email, carte de visite ou site web.</div>
-            <div class="idem-badge">⏱ 1 minute, 1 copier-coller</div>
-          </div>
+        <div class="htw-info" data-htw="2">
+          <div class="htw-info-tag">Étape 2 · 3 min</div>
+          <h3 class="htw-info-title">Ajoutez vos services &amp; tarifs</h3>
+          <p class="htw-info-desc">Créez vos prestations avec titre, durée et prix. Activez le paiement en ligne via Stripe — vos clients voient vos tarifs en temps réel.</p>
+          <div class="htw-info-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Carte publiée en 1 clic</div>
         </div>
-        <div class="idem-step" data-step="3">
-          <div class="idem-num">3</div>
-          <div class="idem-body">
-            <div class="idem-title">Vos clients réservent, vous pilotez</div>
-            <div class="idem-desc">Les réservations arrivent dans votre agenda. Rappels automatiques. Dashboard en temps réel.</div>
-            <div class="idem-badge">♾ En continu, sans effort</div>
-          </div>
+        <div class="htw-info" data-htw="3">
+          <div class="htw-info-tag">Étape 3 · 2 min</div>
+          <h3 class="htw-info-title">Définissez vos disponibilités</h3>
+          <p class="htw-info-desc">Activez vos jours de travail, définissez vos horaires. Vitryne génère automatiquement les créneaux disponibles — zéro double-réservation possible.</p>
+          <div class="htw-info-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Créneaux générés automatiquement</div>
         </div>
-        <div class="idem-progress-track"><div class="idem-progress-fill" id="idemFill"></div></div>
+        <div class="htw-info" data-htw="4">
+          <div class="htw-info-tag">Étape 4 · 0 min de votre côté</div>
+          <h3 class="htw-info-title">Vos clients réservent 24h/24</h3>
+          <p class="htw-info-desc">Partagez votre lien. Vos clients choisissent leur créneau, paient et reçoivent une confirmation automatique — sans vous déranger.</p>
+          <div class="htw-info-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Rappels SMS &amp; email automatiques</div>
+        </div>
+        <div class="htw-info" data-htw="5">
+          <div class="htw-info-tag">Étape 5 · En continu</div>
+          <h3 class="htw-info-title">Pilotez vos revenus depuis l'agenda</h3>
+          <p class="htw-info-desc">Consultez vos réservations, confirmez ou annulez d'un clic, suivez votre chiffre d'affaires en temps réel. Votre activité tourne même quand vous dormez.</p>
+          <div class="htw-info-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Paiements Stripe sécurisés</div>
+        </div>
       </div>
 
-      <!-- Preview panel -->
-      <div class="idem-preview">
-
-        <!-- ══ SCREEN 1 — Éditeur Ma vitrine (split pane) ══ -->
-        <div class="idem-screen active" id="idem-screen-1" style="padding:0">
-          <!-- Topbar -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid #E8E4DF;background:#fff">
-            <div>
-              <div style="font-family:var(--font-display);font-size:14px;color:#1A1A1A">Ma vitrine</div>
-              <div style="font-size:10px;color:#aaa;margin-top:1px">Personnalisez votre page publique</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:6px">
-              <div style="height:28px;padding:0 10px;border-radius:8px;background:rgba(90,143,106,.08);border:1.5px solid rgba(90,143,106,.3);color:#5A8F6A;font-size:10.5px;font-weight:600;display:flex;align-items:center;gap:5px">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Enregistré
-              </div>
+      <!-- Browser mockup -->
+      <div class="htw-browser playing" id="htwBrowser">
+        <!-- Chrome bar -->
+        <div class="htw-chrome">
+          <div class="htw-chrome-dots">
+            <div class="htw-chrome-dot"></div>
+            <div class="htw-chrome-dot"></div>
+            <div class="htw-chrome-dot"></div>
+          </div>
+          <div class="htw-url-bar" id="htwUrl">app.vitryne.io/dashboard/vitrine</div>
+          <div style="width:52px;flex-shrink:0"></div>
+        </div>
+        <!-- App layout -->
+        <div class="htw-app">
+          <!-- Sidebar -->
+          <div class="htw-sidebar" id="htwSidebar">
+            <div class="htw-sb-brand"><span class="htw-sb-logo">Vitryne</span></div>
+            <div class="htw-sb-sec">Activité</div>
+            <div class="htw-sb-item" data-nav="dashboard"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Tableau de bord</div>
+            <div class="htw-sb-item" data-nav="bookings"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Réservations</div>
+            <div class="htw-sb-item" data-nav="contacts"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>Contacts</div>
+            <div class="htw-sb-sec">Mon offre</div>
+            <div class="htw-sb-item" data-nav="services"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Prestations</div>
+            <div class="htw-sb-item" data-nav="availabilities"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l3 3"/></svg>Disponibilités</div>
+            <div class="htw-sb-sec">Ma vitrine</div>
+            <div class="htw-sb-item" data-nav="vitrine"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Éditeur</div>
+            <div class="htw-sb-item" data-nav="customize"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>Personnaliser</div>
+            <div class="htw-sb-user">
+              <div class="htw-sb-avatar">CL</div>
+              <span class="htw-sb-name">Claire Lambert</span>
             </div>
           </div>
-          <!-- Split pane -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;height:480px">
-            <!-- Left: builder -->
-            <div style="border-right:1px solid #E8E4DF;overflow:hidden;background:#F8F6F2;padding:12px;display:flex;flex-direction:column;gap:10px">
-              <!-- Tabs -->
-              <div style="display:flex;gap:2px;background:#fff;border:1.5px solid #E8E4DF;border-radius:8px;padding:2px">
-                <div style="flex:1;text-align:center;padding:4px 0;border-radius:5px;font-size:9.5px;font-weight:700;background:#1A1A1A;color:#fff">Profil</div>
-                <div style="flex:1;text-align:center;padding:4px 0;border-radius:5px;font-size:9.5px;color:#999">Apparence</div>
-                <div style="flex:1;text-align:center;padding:4px 0;border-radius:5px;font-size:9.5px;color:#999">Services</div>
-                <div style="flex:1;text-align:center;padding:4px 0;border-radius:5px;font-size:9.5px;color:#999">Avis</div>
-              </div>
-              <!-- Avatar upload -->
-              <div style="display:flex;align-items:center;gap:10px">
-                <div style="width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#c9856a,#a8705a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:700;flex-shrink:0">CL</div>
-                <div>
-                  <div style="font-size:10.5px;font-weight:600;color:#1A1A1A;margin-bottom:3px">Photo de profil</div>
-                  <div style="font-size:9.5px;padding:3px 8px;border:1.5px solid #E8E4DF;border-radius:6px;color:#888;display:inline-block;cursor:default">Modifier →</div>
+          <!-- Screens -->
+          <div class="htw-screens">
+
+            <!-- SCREEN 1 — Vitrine éditeur -->
+            <div class="htw-screen active" id="htw-s1">
+              <div style="padding:13px 13px 0">
+                <!-- Header -->
+                <div class="s1-f1" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                  <span style="font-family:'Instrument Serif',Georgia,serif;font-size:13.5px;color:#1A1A1A">Ma vitrine</span>
+                  <div class="s1-saved" style="height:22px;padding:0 8px;border-radius:5px;background:rgba(90,143,106,.08);border:1px solid rgba(90,143,106,.25);color:#5A8F6A;font-size:9px;font-weight:600;display:flex;align-items:center;gap:3px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Enregistré</div>
                 </div>
-              </div>
-              <!-- Fields -->
-              <div>
-                <div style="font-size:9.5px;font-weight:600;color:#888;margin-bottom:4px">Nom affiché</div>
-                <div style="padding:7px 10px;border:1.5px solid #B8976A;border-radius:8px;font-size:11.5px;color:#1A1A1A;background:#FDFCFA">Claire Lambert</div>
-              </div>
-              <div>
-                <div style="font-size:9.5px;font-weight:600;color:#888;margin-bottom:4px">Accroche</div>
-                <div style="padding:7px 10px;border:1.5px solid #E8E4DF;border-radius:8px;font-size:11px;color:#777;background:#fff">✦ Sophrologue certifiée ✦</div>
-              </div>
-              <div>
-                <div style="font-size:9.5px;font-weight:600;color:#888;margin-bottom:4px">Description</div>
-                <div style="padding:7px 10px;border:1.5px solid #E8E4DF;border-radius:8px;font-size:10.5px;color:#777;background:#fff;line-height:1.5;min-height:48px">Accompagnement sophrologique pour retrouver calme et équilibre au quotidien.</div>
-              </div>
-              <!-- Couleur thème -->
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:8px">
-                <div style="font-size:10.5px;font-weight:600;color:#1A1A1A">Couleur thème</div>
-                <div style="display:flex;align-items:center;gap:6px">
-                  <div style="width:18px;height:18px;border-radius:50%;background:#c9856a;border:2px solid #fff;box-shadow:0 0 0 1.5px #c9856a"></div>
-                  <span style="font-size:10px;color:#888">#c9856a</span>
+                <!-- Avatar row -->
+                <div class="s1-f1" style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:10px;margin-bottom:7px">
+                  <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#B8976A,#8B6E4E);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;flex-shrink:0">CL</div>
+                  <div><div style="font-size:10.5px;font-weight:700;color:#1A1A1A">Claire Lambert</div><div style="font-size:9px;color:#aaa">vitryne.io/claire-l</div></div>
+                  <div style="margin-left:auto;font-size:9px;color:#B8976A;font-weight:600">Modifier →</div>
                 </div>
-              </div>
-              <!-- Publication toggle -->
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:#fff;border:1.5px solid rgba(90,143,106,.25);border-radius:8px;margin-top:auto">
-                <div>
-                  <div style="font-size:10.5px;font-weight:600;color:#5A8F6A">Page publiée</div>
-                  <div style="font-size:9px;color:#aaa">vitryne.fr/claire-l</div>
+                <!-- Titre field (focused) -->
+                <div class="s1-f2" style="margin-bottom:6px">
+                  <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Titre</div>
+                  <div style="padding:6px 9px;border:1.5px solid #B8976A;border-radius:8px;font-size:11.5px;color:#1A1A1A;background:#FDFCFA">Claire Lambert</div>
                 </div>
-                <div style="width:34px;height:20px;background:#5A8F6A;border-radius:100px;position:relative;flex-shrink:0">
-                  <div style="width:16px;height:16px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div>
+                <!-- Accroche with cursor -->
+                <div class="s1-f3" style="margin-bottom:6px">
+                  <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Accroche</div>
+                  <div style="padding:6px 9px;border:1.5px solid #E8E4DF;border-radius:8px;font-size:11px;color:#555;background:#FDFCFA">✦ Sophrologue certifiée ✦<span class="s1-cursor" style="color:#B8976A;margin-left:1px">|</span></div>
+                </div>
+                <!-- Description -->
+                <div class="s1-f4" style="margin-bottom:6px">
+                  <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">Description</div>
+                  <div style="padding:6px 9px;border:1.5px solid #E8E4DF;border-radius:8px;font-size:10.5px;color:#777;background:#FDFCFA;line-height:1.5;min-height:40px">Accompagnement sophrologique pour retrouver calme et équilibre au quotidien.</div>
+                </div>
+                <!-- Color theme -->
+                <div class="s1-f5" style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:8px;margin-bottom:6px">
+                  <div style="font-size:10px;font-weight:600;color:#1A1A1A">Couleur thème</div>
+                  <div style="display:flex;gap:5px">
+                    <div style="width:15px;height:15px;border-radius:50%;background:#B8976A;box-shadow:0 0 0 2px #fff,0 0 0 3px #B8976A"></div>
+                    <div style="width:15px;height:15px;border-radius:50%;background:#5A8F6A;border:1.5px solid #E8E4DF"></div>
+                    <div style="width:15px;height:15px;border-radius:50%;background:#5A6A8F;border:1.5px solid #E8E4DF"></div>
+                    <div style="width:15px;height:15px;border-radius:50%;background:#1A1A1A;border:1.5px solid #E8E4DF"></div>
+                  </div>
+                </div>
+                <!-- Published toggle -->
+                <div class="s1-f6" style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:#fff;border:1.5px solid rgba(90,143,106,.25);border-radius:8px">
+                  <div><div style="font-size:10px;font-weight:700;color:#5A8F6A">Page publiée</div><div style="font-size:8.5px;color:#aaa">vitryne.io/claire-l</div></div>
+                  <div style="width:28px;height:16px;background:#5A8F6A;border-radius:100px;position:relative;flex-shrink:0"><div style="width:12px;height:12px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div></div>
                 </div>
               </div>
             </div>
-            <!-- Right: preview pane -->
-            <div style="background:#F8F6F2;display:flex;flex-direction:column;overflow:hidden">
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid #E8E4DF;background:#F8F6F2">
-                <span style="font-size:9.5px;font-weight:600;color:#999;letter-spacing:.04em;text-transform:uppercase">Aperçu</span>
-                <div style="display:flex;gap:4px">
-                  <div style="padding:3px 8px;border:1.5px solid #1A1A1A;border-radius:5px;font-size:9px;color:#1A1A1A;font-weight:600">📱</div>
-                  <div style="padding:3px 8px;border:1.5px solid #E8E4DF;border-radius:5px;font-size:9px;color:#aaa">🖥</div>
+
+            <!-- SCREEN 2 — Nouvelle prestation -->
+            <div class="htw-screen" id="htw-s2">
+              <div style="padding:13px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+                  <span style="font-family:'Instrument Serif',Georgia,serif;font-size:13.5px;color:#1A1A1A">Nouvelle prestation</span>
+                </div>
+                <!-- Title field (typing) -->
+                <div class="s2-f1" style="padding:9px 11px;background:#fff;border:1.5px solid #B8976A;border-radius:10px;margin-bottom:6px">
+                  <div style="font-size:8.5px;font-weight:700;color:#B8976A;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Titre de la prestation</div>
+                  <div style="font-size:12px;color:#1A1A1A;font-weight:500">Séance Sophrologie 60 min<span class="s1-cursor" style="color:#B8976A">|</span></div>
+                </div>
+                <!-- Duration + Price -->
+                <div class="s2-f2" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px">
+                  <div style="padding:8px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:10px">
+                    <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Durée</div>
+                    <div style="font-size:12px;color:#1A1A1A;font-weight:500">60 min</div>
+                  </div>
+                  <div style="padding:8px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:10px">
+                    <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Tarif</div>
+                    <div style="font-size:12px;color:#1A1A1A;font-weight:500">70 €</div>
+                  </div>
+                </div>
+                <!-- Mode chips -->
+                <div class="s2-f3" style="padding:8px 10px;background:#fff;border:1.5px solid #E8E4DF;border-radius:10px;margin-bottom:9px">
+                  <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Mode</div>
+                  <div style="display:flex;gap:5px;flex-wrap:wrap">
+                    <div style="padding:3px 9px;border-radius:100px;background:#1A1A1A;color:#fff;font-size:9.5px;font-weight:600">En personne</div>
+                    <div style="padding:3px 9px;border-radius:100px;background:#F0EDE8;color:#999;font-size:9.5px">En ligne</div>
+                    <div style="padding:3px 9px;border-radius:100px;background:rgba(90,143,106,.08);color:#5A8F6A;font-size:9.5px;font-weight:600">Stripe ✓</div>
+                  </div>
+                </div>
+                <!-- Create button -->
+                <div class="s2-btn" style="padding:9px;background:linear-gradient(135deg,#1A1A1A,#333);color:#fff;border-radius:10px;font-size:11px;font-weight:700;text-align:center;margin-bottom:9px">✦ Créer la prestation</div>
+                <!-- Service card (appears after) -->
+                <div class="s2-card" style="background:#fff;border:1.5px solid rgba(90,143,106,.3);border-radius:12px;padding:9px 11px;display:flex;align-items:center;gap:9px">
+                  <div style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#F5EAD8,#EDD9BF);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">🌿</div>
+                  <div style="flex:1">
+                    <div style="font-size:11px;font-weight:700;color:#1A1A1A;margin-bottom:1px">Séance Sophrologie 60 min</div>
+                    <div style="font-size:9px;color:#999">60 min · 70 € · En personne</div>
+                  </div>
+                  <div style="font-size:9px;font-weight:600;padding:2px 7px;border-radius:100px;background:rgba(90,143,106,.08);color:#5A8F6A;white-space:nowrap">Affiché ✓</div>
                 </div>
               </div>
-              <!-- Mini phone preview -->
-              <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:12px">
-                <div style="width:130px;background:#1A1A1A;border-radius:22px;padding:7px;box-shadow:0 12px 40px rgba(0,0,0,.25)">
-                  <div style="background:rgba(201,133,106,.06);border-radius:16px;overflow:hidden">
-                    <!-- mini hero -->
-                    <div style="padding:14px 8px 10px;text-align:center;background:linear-gradient(175deg,rgba(201,133,106,.05),rgba(201,133,106,.13))">
-                      <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c9856a,#a8705a);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;box-shadow:0 0 0 2px #fff,0 0 0 3.5px rgba(201,133,106,.3)">CL</div>
-                      <div style="font-size:8px;font-weight:700;color:#111">Claire Lambert</div>
-                      <div style="font-size:6px;color:#c9856a;margin:2px 0">✦ Sophrologue ✦</div>
-                      <div style="display:inline-flex;align-items:center;gap:2px;background:#fff;border:1px solid #f0f0f0;border-radius:100px;padding:1.5px 5px;margin-top:3px">
-                        <span style="font-size:6px;font-weight:800;color:#4285F4">G</span>
-                        <span style="font-size:6px;font-weight:700;color:#111">4.9</span>
-                        <span style="font-size:6px;color:#FBBF24">★★★★★</span>
-                      </div>
-                    </div>
-                    <!-- mini services -->
-                    <div style="padding:7px 6px;background:#fff">
-                      <div style="font-size:6.5px;font-weight:700;color:#111;margin-bottom:5px">Mes prestations</div>
-                      <div style="display:flex;background:#fff;border-radius:8px;border:1px solid #f0f0f0;overflow:hidden;margin-bottom:4px">
-                        <div style="width:28px;background:linear-gradient(135deg,rgba(201,133,106,.12),#f5f0fc);flex-shrink:0"></div>
-                        <div style="padding:4px 5px;flex:1">
-                          <div style="font-size:6px;font-weight:700;color:#111">Séance découverte</div>
-                          <div style="font-size:5.5px;color:#aaa;margin-top:1px">30 min · 35€</div>
-                        </div>
-                      </div>
-                      <div style="display:flex;background:#fff;border-radius:8px;border:1px solid #f0f0f0;overflow:hidden">
-                        <div style="width:28px;background:linear-gradient(135deg,rgba(90,143,106,.12),#f0f8f0);flex-shrink:0"></div>
-                        <div style="padding:4px 5px;flex:1">
-                          <div style="font-size:6px;font-weight:700;color:#111">Séance individuelle</div>
-                          <div style="font-size:5.5px;color:#aaa;margin-top:1px">1h · 70€</div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- CTA -->
-                    <div style="padding:6px;background:#fff;border-top:1px solid #f5f5f5">
-                      <div style="padding:6px;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,.85));color:#fff;border-radius:8px;font-size:6.5px;font-weight:700;text-align:center">Voir les disponibilités →</div>
-                    </div>
+            </div>
+
+            <!-- SCREEN 3 — Disponibilités -->
+            <div class="htw-screen" id="htw-s3">
+              <div style="padding:13px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+                  <span style="font-family:'Instrument Serif',Georgia,serif;font-size:13.5px;color:#1A1A1A">Disponibilités</span>
+                  <div style="font-size:8.5px;font-weight:700;color:#B8976A;background:rgba(184,151,106,.1);border-radius:20px;padding:3px 8px">4 jours actifs</div>
+                </div>
+                <!-- Day selector -->
+                <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:11px">
+                  <div class="s3-d1" style="height:28px;border-radius:7px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">L</div>
+                  <div style="height:28px;border-radius:7px;background:#F0EDE8;color:#C8C0B8;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">M</div>
+                  <div class="s3-d2" style="height:28px;border-radius:7px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">M</div>
+                  <div class="s3-d3" style="height:28px;border-radius:7px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">J</div>
+                  <div class="s3-d4" style="height:28px;border-radius:7px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">V</div>
+                  <div style="height:28px;border-radius:7px;background:#F0EDE8;color:#C8C0B8;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">S</div>
+                  <div style="height:28px;border-radius:7px;background:#F0EDE8;color:#C8C0B8;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center">D</div>
+                </div>
+                <!-- Lundi schedule -->
+                <div class="s3-block" style="background:#fff;border:1.5px solid #E8E4DF;border-radius:12px;overflow:hidden;margin-bottom:7px">
+                  <div style="padding:8px 11px;border-bottom:1px solid #F2EFE9;display:flex;align-items:center;gap:7px">
+                    <div style="width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#B8976A,#8B6E4E);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff">L</div>
+                    <span style="font-size:11.5px;font-weight:700;color:#1A1A1A">Lundi</span>
+                    <span style="margin-left:auto;font-size:9px;color:#5A8F6A;font-weight:600">Actif</span>
+                  </div>
+                  <div style="padding:8px 11px;display:flex;align-items:center;gap:6px">
+                    <span style="font-size:9px;font-weight:600;color:#B8976A;background:rgba(184,151,106,.1);border-radius:4px;padding:2px 6px">Matin</span>
+                    <div style="padding:4px 7px;border:1.5px solid #E8E4DF;border-radius:6px;font-size:10.5px;color:#1A1A1A;background:#FDFCFA">09:00</div>
+                    <span style="color:#D4CFC8;font-size:12px">→</span>
+                    <div style="padding:4px 7px;border:1.5px solid #E8E4DF;border-radius:6px;font-size:10.5px;color:#1A1A1A;background:#FDFCFA">12:00</div>
+                  </div>
+                  <div style="padding:0 11px 8px;display:flex;align-items:center;gap:6px">
+                    <span style="font-size:9px;font-weight:600;color:#5A8F6A;background:rgba(90,143,106,.09);border-radius:4px;padding:2px 6px">Après-midi</span>
+                    <div style="padding:4px 7px;border:1.5px solid #E8E4DF;border-radius:6px;font-size:10.5px;color:#1A1A1A;background:#FDFCFA">14:00</div>
+                    <span style="color:#D4CFC8;font-size:12px">→</span>
+                    <div style="padding:4px 7px;border:1.5px solid #E8E4DF;border-radius:6px;font-size:10.5px;color:#1A1A1A;background:#FDFCFA">18:00</div>
+                  </div>
+                </div>
+                <!-- Slots preview -->
+                <div class="s3-block" style="background:#fff;border:1.5px solid #E8E4DF;border-radius:12px;padding:9px 11px">
+                  <div style="font-size:8.5px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px">Créneaux générés · Lundi</div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+                    <div class="s3-slot1" style="padding:5px 0;border-radius:6px;background:rgba(184,151,106,.1);color:#B8976A;font-size:9.5px;font-weight:600;text-align:center">09:00</div>
+                    <div class="s3-slot2" style="padding:5px 0;border-radius:6px;background:rgba(184,151,106,.1);color:#B8976A;font-size:9.5px;font-weight:600;text-align:center">10:00</div>
+                    <div class="s3-slot3" style="padding:5px 0;border-radius:6px;background:rgba(184,151,106,.1);color:#B8976A;font-size:9.5px;font-weight:600;text-align:center">11:00</div>
+                    <div class="s3-slot4" style="padding:5px 0;border-radius:6px;background:rgba(184,151,106,.1);color:#B8976A;font-size:9.5px;font-weight:600;text-align:center">14:00</div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- ══ SCREEN 2 — Vue client : vitrine + booking créneaux ══ -->
-        <div class="idem-screen" id="idem-screen-2" style="padding:0;background:rgba(201,133,106,.05)">
-          <!-- Sticky header (client side) -->
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(255,255,255,.97);border-bottom:1px solid #f0f0f0;backdrop-filter:blur(8px)">
-            <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#c9856a,#a8705a);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 0 0 1.5px rgba(201,133,106,.4)">CL</div>
-            <div style="flex:1;min-width:0">
-              <div style="font-size:11px;font-weight:700;color:#111">Claire Lambert</div>
-              <div style="font-size:9px;color:#aaa">Sophrologue · Paris 11e</div>
-            </div>
-            <div style="display:inline-flex;align-items:center;gap:3px;background:#fff;border:1px solid #f0f0f0;border-radius:100px;padding:2px 7px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
-              <span style="font-size:8px;font-weight:800;color:#4285F4">G</span>
-              <span style="font-size:8.5px;font-weight:700;color:#111">4.9</span>
-              <span style="font-size:8px;color:#FBBF24">★★★★★</span>
-            </div>
-            <div style="display:inline-flex;align-items:center;gap:3px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);border-radius:100px;padding:2px 7px">
-              <div style="width:5px;height:5px;border-radius:50%;background:#4ade80"></div>
-              <span style="font-size:8.5px;font-weight:600;color:#16a34a">Disponible</span>
-            </div>
-          </div>
-          <!-- Service sélectionné -->
-          <div style="margin:12px;background:#fff;border-radius:16px;border:1px solid #f0f0f0;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05)">
-            <div style="display:flex;align-items:center;gap:4px;padding:10px 12px;border-bottom:1px solid #f5f5f5;background:#FAFAF8">
-              <div style="width:7px;height:7px;border-radius:50%;background:#E8E4DF;cursor:default;flex-shrink:0"></div>
-              <span style="font-size:10px;color:#888;font-weight:500">Séance découverte</span>
-              <span style="font-size:10px;color:#ccc;margin:0 2px">·</span>
-              <span style="font-size:10px;color:#888">30 min</span>
-              <span style="font-size:10px;font-weight:700;color:#c9856a;margin-left:auto">35 €</span>
-            </div>
-            <!-- Calendar date selector -->
-            <div style="padding:12px 14px;border-bottom:1px solid #f5f5f5">
-              <div style="font-size:10px;font-weight:700;color:#1A1A1A;margin-bottom:8px;display:flex;align-items:center;gap:5px">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                Choisissez une date
-              </div>
-              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px">
-                <div style="font-size:7.5px;font-weight:600;color:#aaa;text-align:center">L</div><div style="font-size:7.5px;font-weight:600;color:#aaa;text-align:center">M</div><div style="font-size:7.5px;font-weight:600;color:#aaa;text-align:center">M</div><div style="font-size:7.5px;font-weight:600;color:#aaa;text-align:center">J</div><div style="font-size:7.5px;font-weight:600;color:#aaa;text-align:center">V</div><div style="font-size:7.5px;font-weight:600;color:#C9AB82;text-align:center">S</div><div style="font-size:7.5px;font-weight:600;color:#C9AB82;text-align:center">D</div>
-              </div>
-              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
-                <div style="aspect-ratio:1;border-radius:5px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa">31</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700">1</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">2</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">3</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">4</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:#FDFCF8;display:flex;align-items:center;justify-content:center;font-size:8px;color:#bbb">5</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:#FDFCF8;display:flex;align-items:center;justify-content:center;font-size:8px;color:#bbb">6</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">7</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">8</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">9</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">10</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:rgba(201,133,106,.1);display:flex;align-items:center;justify-content:center;font-size:8px;color:#c9856a;font-weight:600">11</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:#FDFCF8;display:flex;align-items:center;justify-content:center;font-size:8px;color:#bbb">12</div>
-                <div style="aspect-ratio:1;border-radius:5px;background:#FDFCF8;display:flex;align-items:center;justify-content:center;font-size:8px;color:#bbb">13</div>
-              </div>
-            </div>
-            <!-- Time slots -->
-            <div style="padding:12px 14px">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                <div style="font-size:10px;font-weight:700;color:#1A1A1A;display:flex;align-items:center;gap:5px">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                  Mardi 1 avril
+            <!-- SCREEN 4 — Vue client publique -->
+            <div class="htw-screen" id="htw-s4">
+              <div style="background:#FDFCFA;height:100%;overflow-y:auto">
+                <!-- Public header -->
+                <div style="display:flex;align-items:center;gap:7px;padding:8px 11px;background:rgba(255,255,255,.97);border-bottom:1px solid #f0f0f0;position:sticky;top:0;z-index:10">
+                  <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#B8976A,#8B6E4E);display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;flex-shrink:0">CL</div>
+                  <div style="flex:1"><div style="font-size:10.5px;font-weight:700;color:#111">Claire Lambert</div><div style="font-size:8.5px;color:#aaa">✦ Sophrologue certifiée ✦</div></div>
+                  <div style="height:22px;padding:0 8px;border-radius:5px;background:#1A1A1A;color:#fff;font-size:9px;font-weight:600;display:flex;align-items:center">Prendre RDV →</div>
                 </div>
-                <div style="font-size:9px;color:#aaa;border:1px solid #E8E4DF;padding:2px 7px;border-radius:5px;cursor:default">Retour</div>
-              </div>
-              <div style="font-size:9px;color:#888;margin-bottom:8px">Sélectionnez une heure</div>
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px">
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:700;text-align:center;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,.85));color:#fff;box-shadow:0 2px 8px rgba(201,133,106,.3)">9h00</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">10h30</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">11h00</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">14h00</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">15h30</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">16h00</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">17h30</div>
-                <div style="padding:6px 0;border-radius:7px;font-size:10px;font-weight:500;text-align:center;border:1.5px solid #E8E4DF;color:#777">18h00</div>
-              </div>
-              <div style="padding:11px;background:linear-gradient(135deg,#c9856a,rgba(201,133,106,.85));color:#fff;border-radius:12px;font-size:11px;font-weight:700;text-align:center;box-shadow:0 4px 14px rgba(201,133,106,.4)">Confirmer · 9h00 · 35€ →</div>
-              <div style="text-align:center;font-size:9px;color:#bbb;margin-top:7px">Annulation gratuite jusqu'à 24h avant</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ══ SCREEN 3 — Dashboard agenda (vue pro) ══ -->
-        <div class="idem-screen" id="idem-screen-3" style="padding:0;background:#F8F6F2">
-          <!-- Dashboard layout: sidebar + main -->
-          <div style="display:flex;height:520px;overflow:hidden">
-            <!-- Mini sidebar -->
-            <div style="width:148px;background:#FDFCFA;border-right:1px solid #E8E4DF;padding:12px 8px;display:flex;flex-direction:column;gap:2px;flex-shrink:0">
-              <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;margin-bottom:6px">
-                <div style="width:24px;height:24px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#FDFCFA;font-weight:700">V</div>
-                <span style="font-size:11px;font-weight:700;color:#1A1A1A">Vitryne</span>
-              </div>
-              <div style="font-size:8.5px;font-weight:700;color:#bbb;letter-spacing:.07em;text-transform:uppercase;padding:0 8px;margin:4px 0 2px">Principal</div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;background:#F5F3EF;font-size:10.5px;font-weight:600;color:#1A1A1A">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
-                Agenda <div style="width:5px;height:5px;border-radius:50%;background:#B8976A;margin-left:auto"></div>
-              </div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;font-size:10.5px;color:#888">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5a1 1 0 011-1h4a1 1 0 011 1v5a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10-3a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1v-7z"/></svg>
-                Ma vitrine
-              </div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;font-size:10.5px;color:#888">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7H4a1 1 0 00-1 1v10a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1zM1 7l3-4h16l3 4"/></svg>
-                Prestations
-              </div>
-              <div style="font-size:8.5px;font-weight:700;color:#bbb;letter-spacing:.07em;text-transform:uppercase;padding:0 8px;margin:8px 0 2px">Analyse</div>
-              <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;font-size:10.5px;color:#888">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
-                Contacts
-              </div>
-              <div style="margin-top:auto;display:flex;align-items:center;gap:6px;padding:7px 8px;border-top:1px solid #E8E4DF">
-                <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#c9856a,#a8705a);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">CL</div>
-                <div><div style="font-size:9.5px;font-weight:600;color:#1A1A1A">Claire Lambert</div><div style="font-size:8px;color:#aaa">Pro</div></div>
-              </div>
-            </div>
-            <!-- Main content -->
-            <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
-              <!-- Topbar -->
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#FAFAF8;border-bottom:1px solid #E8E4DF;flex-shrink:0">
-                <div style="display:flex;align-items:center;gap:8px">
-                  <div style="font-size:9px;color:#aaa;border:1px solid #E8E4DF;padding:3px 7px;border-radius:5px;cursor:default">‹</div>
-                  <span style="font-size:11px;font-weight:700;color:#1A1A1A">Avril 2026</span>
-                  <div style="font-size:9px;color:#aaa;border:1px solid #E8E4DF;padding:3px 7px;border-radius:5px;cursor:default">›</div>
-                  <div style="font-size:9px;color:#777;border:1px solid #E8E4DF;padding:3px 8px;border-radius:5px;cursor:default">Aujourd'hui</div>
-                </div>
-                <div style="display:flex;align-items:center;gap:5px">
-                  <div style="font-size:9px;padding:3px 7px;border-radius:5px;background:#1A1A1A;color:#fff;font-weight:600">Mois</div>
-                  <div style="font-size:9px;padding:3px 7px;border-radius:5px;border:1px solid #E8E4DF;color:#888">Semaine</div>
-                  <div style="font-size:9px;padding:3px 8px;border-radius:5px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;font-weight:600;margin-left:4px">+ Nouveau RDV</div>
-                </div>
-              </div>
-              <!-- Notif banner -->
-              <div style="display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(90,143,106,.06);border-bottom:1px solid rgba(90,143,106,.12)">
-                <div style="width:8px;height:8px;border-radius:50%;background:#5A8F6A;flex-shrink:0;animation:pulse 2s infinite"></div>
-                <div style="font-size:10px;color:#1A1A1A;flex:1"><strong>Sophie M.</strong> vient de réserver · Séance découverte · Auj. 9h00</div>
-                <div style="font-size:9px;font-weight:700;color:#5A8F6A;background:rgba(90,143,106,.1);padding:2px 7px;border-radius:100px;white-space:nowrap">Confirmé</div>
-              </div>
-              <!-- KPIs row -->
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 10px;flex-shrink:0">
-                <div style="background:#fff;border:1px solid #E8E4DF;border-radius:8px;padding:8px 10px">
-                  <div style="font-size:8.5px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px">En attente</div>
-                  <div style="font-size:9px;font-weight:700;color:#B8976A;margin-bottom:2px">À traiter</div>
-                  <div style="font-family:var(--font-display);font-size:1.4rem;color:#1A1A1A;line-height:1">2</div>
-                  <div style="font-size:8.5px;color:#aaa">confirmations</div>
-                </div>
-                <div style="background:#fff;border:1px solid #E8E4DF;border-radius:8px;padding:8px 10px">
-                  <div style="font-size:8.5px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">À venir</div>
-                  <div style="font-family:var(--font-display);font-size:1.4rem;color:#1A1A1A;line-height:1">18</div>
-                  <div style="font-size:8.5px;color:#aaa">ce mois-ci</div>
-                </div>
-                <div style="background:#fff;border:1px solid #E8E4DF;border-radius:8px;padding:8px 10px">
-                  <div style="font-size:8.5px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">CA estimé</div>
-                  <div style="font-family:var(--font-display);font-size:1.1rem;color:#1A1A1A;line-height:1">1 680 €</div>
-                  <div style="font-size:8.5px;color:#aaa">cette semaine</div>
-                </div>
-                <div style="background:#fff;border:1px solid #E8E4DF;border-radius:8px;padding:8px 10px">
-                  <div style="font-size:8.5px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px">Remplissage</div>
-                  <div style="font-family:var(--font-display);font-size:1.4rem;color:#1A1A1A;line-height:1">87<span style="font-size:.7rem">%</span></div>
-                  <div style="font-size:8.5px;color:#5A8F6A">+12% vs sem. préc.</div>
-                </div>
-              </div>
-              <!-- Calendar grid -->
-              <div style="flex:1;overflow:hidden;padding:0 10px 8px;display:flex;flex-direction:column">
-                <div style="background:#fff;border:1px solid #E8E4DF;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;flex:1">
-                  <div style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid #E8E4DF;flex-shrink:0">
-                    <div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#aaa;text-transform:uppercase">Lun</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#aaa;text-transform:uppercase">Mar</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#aaa;text-transform:uppercase">Mer</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#aaa;text-transform:uppercase">Jeu</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#aaa;text-transform:uppercase">Ven</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#C9AB82;text-transform:uppercase">Sam</div><div style="padding:5px;text-align:center;font-size:8px;font-weight:700;color:#C9AB82;text-transform:uppercase">Dim</div>
+                <!-- Booking card -->
+                <div class="s4-card" style="margin:9px 9px 0;background:#fff;border-radius:12px;border:1px solid #ECEAE6;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04)">
+                  <div style="padding:8px 10px;background:#F5EAD8;border-bottom:1px solid #ECEAE6;display:flex;align-items:center;justify-content:space-between">
+                    <div>
+                      <div style="font-size:11.5px;font-weight:700;color:#1A1A1A">Séance Sophrologie 60 min</div>
+                      <div style="font-size:9px;color:#8B6E4E;margin-top:2px">60 min · En personne</div>
+                    </div>
+                    <div style="font-size:13px;font-weight:700;color:#B8976A">70 €</div>
                   </div>
-                  <div style="display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(3,1fr);flex:1">
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#ccc;text-align:center">31</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;font-weight:700;text-align:center;margin-bottom:2px"><span style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;background:#1A1A1A;color:#fff;border-radius:50%;font-size:7px">1</span></div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;margin-bottom:1px;white-space:nowrap;overflow:hidden">9h Sophie M.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">11h Marc D.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">2</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(184,151,106,.12);color:#B8976A;white-space:nowrap;overflow:hidden">10h Pierre L.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">3</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;margin-bottom:1px;white-space:nowrap;overflow:hidden">9h30 Léa B.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">13h Thomas</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">4</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(184,151,106,.12);color:#B8976A;margin-bottom:1px;white-space:nowrap;overflow:hidden">11h Hugo W.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">15h Camille</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef;background:#FDFCF8"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">5</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">9h Inès R.</div></div>
-                    <div style="padding:4px 3px;border-bottom:1px solid #f5f3ef;background:#FDFCF8"><div style="font-size:7.5px;color:#ccc;text-align:center">6</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">7</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">10h Anna K.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">8</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;margin-bottom:1px;white-space:nowrap;overflow:hidden">9h Nina S.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(184,151,106,.12);color:#B8976A;white-space:nowrap;overflow:hidden">14h Lucas P.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">9</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(91,141,184,.1);color:#5B8DB8;white-space:nowrap;overflow:hidden">11h Yanis B.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">10</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;margin-bottom:1px;white-space:nowrap;overflow:hidden">10h Sarah L.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">14h30 Chloé</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">11</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">9h Emma V.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;border-bottom:1px solid #f5f3ef;background:#FDFCF8"><div style="font-size:7.5px;color:#ccc;text-align:center">12</div></div>
-                    <div style="padding:4px 3px;border-bottom:1px solid #f5f3ef;background:#FDFCF8"><div style="font-size:7.5px;color:#ccc;text-align:center">13</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">14</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">9h30 Marie</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">15</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;margin-bottom:1px;white-space:nowrap;overflow:hidden">10h Julie F.</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(184,151,106,.12);color:#B8976A;white-space:nowrap;overflow:hidden">14h Romain</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">16</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(91,141,184,.1);color:#5B8DB8;white-space:nowrap;overflow:hidden">11h Paul B.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">17</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">9h Ambre L.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef"><div style="font-size:7.5px;color:#999;text-align:center;margin-bottom:2px">18</div><div style="font-size:7px;font-weight:600;padding:1px 3px;border-radius:3px;background:rgba(90,143,106,.12);color:#5A8F6A;white-space:nowrap;overflow:hidden">10h Diane P.</div></div>
-                    <div style="padding:4px 3px;border-right:1px solid #f5f3ef;background:#FDFCF8"><div style="font-size:7.5px;color:#ccc;text-align:center">19</div></div>
-                    <div style="padding:4px 3px;background:#FDFCF8"><div style="font-size:7.5px;color:#ccc;text-align:center">20</div></div>
+                  <!-- Calendar -->
+                  <div style="padding:8px 10px;border-bottom:1px solid #f5f5f5">
+                    <div style="font-size:9px;font-weight:700;color:#1A1A1A;margin-bottom:5px">Choisissez une date</div>
+                    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:2px">
+                      <div style="font-size:6.5px;font-weight:600;color:#aaa;text-align:center">L</div><div style="font-size:6.5px;font-weight:600;color:#aaa;text-align:center">M</div><div style="font-size:6.5px;font-weight:600;color:#aaa;text-align:center">M</div><div style="font-size:6.5px;font-weight:600;color:#aaa;text-align:center">J</div><div style="font-size:6.5px;font-weight:600;color:#aaa;text-align:center">V</div><div style="font-size:6.5px;font-weight:600;color:#C9AB82;text-align:center">S</div><div style="font-size:6.5px;font-weight:600;color:#C9AB82;text-align:center">D</div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#ccc">29</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">30</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#fff;font-weight:700">1</div>
+                      <div class="s4-date" style="aspect-ratio:1;border-radius:4px;background:rgba(184,151,106,.15);border:1.5px solid #B8976A;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#B8976A;font-weight:700">2</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">3</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#ccc">4</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#ccc">5</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">6</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">7</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">8</div>
+                      <div style="aspect-ratio:1;border-radius:4px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:7.5px;color:#555">9</div>
+                    </div>
+                  </div>
+                  <!-- Slots -->
+                  <div style="padding:8px 10px">
+                    <div style="font-size:9px;font-weight:700;color:#1A1A1A;margin-bottom:5px">Créneaux disponibles</div>
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:7px">
+                      <div class="s4-slot1" style="padding:5px 0;border-radius:6px;background:#B8976A;color:#fff;font-size:9px;font-weight:700;text-align:center">9h00</div>
+                      <div class="s4-slot2" style="padding:5px 0;border-radius:6px;background:#F5F3EF;color:#555;font-size:9px;text-align:center">10h00</div>
+                      <div class="s4-slot3" style="padding:5px 0;border-radius:6px;background:#F5F3EF;color:#555;font-size:9px;text-align:center">11h00</div>
+                      <div class="s4-slot4" style="padding:5px 0;border-radius:6px;background:#F5F3EF;color:#555;font-size:9px;text-align:center">14h00</div>
+                    </div>
+                    <div class="s4-confirm" style="padding:8px;background:linear-gradient(135deg,#B8976A,#8B6E4E);color:#fff;border-radius:8px;font-size:10px;font-weight:700;text-align:center">Confirmer — Mer. 2 · 9h00 · 70 €</div>
+                    <div style="margin-top:4px;font-size:8px;color:#aaa;text-align:center">Annulation gratuite jusqu'à 24h avant</div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-      </div>
+            <!-- SCREEN 5 — Réservations & revenus -->
+            <div class="htw-screen" id="htw-s5">
+              <div style="padding:13px">
+                <!-- Notification banner -->
+                <div class="s5-banner" style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:linear-gradient(90deg,rgba(90,143,106,.08),rgba(90,143,106,.02));border:1px solid rgba(90,143,106,.2);border-radius:10px;margin-bottom:11px">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#5A8F6A;flex-shrink:0;animation:pulse 2s infinite"></div>
+                  <div style="flex:1"><div style="font-size:10px;font-weight:700;color:#3d7050">Nouvelle réservation !</div><div style="font-size:8.5px;color:#5A8F6A">Sophie Martin · Séance Sophrologie · Mer 11 juin 9h00</div></div>
+                  <div style="font-size:9.5px;font-weight:700;color:#5A8F6A;background:rgba(90,143,106,.1);padding:2px 7px;border-radius:5px;white-space:nowrap">70 €</div>
+                </div>
+                <!-- KPIs -->
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:11px">
+                  <div class="s5-kpi1" style="background:#fff;border:1px solid #E8E4DF;border-radius:10px;padding:9px;text-align:center">
+                    <div style="font-size:7px;font-weight:600;color:#C8C0B8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">En attente</div>
+                    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.4rem;color:#A07540;line-height:1">3</div>
+                    <div style="font-size:7.5px;color:#B8976A;margin-top:1px;font-weight:600">À traiter</div>
+                  </div>
+                  <div class="s5-kpi2" style="background:#fff;border:1px solid #E8E4DF;border-radius:10px;padding:9px;text-align:center">
+                    <div style="font-size:7px;font-weight:600;color:#C8C0B8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">7 proch. jours</div>
+                    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.4rem;color:#1A1A1A;line-height:1">12</div>
+                    <div style="font-size:7.5px;color:#aaa;margin-top:1px">confirmés</div>
+                  </div>
+                  <div class="s5-kpi3" style="background:#fff;border:1px solid #E8E4DF;border-radius:10px;padding:9px;text-align:center">
+                    <div style="font-size:7px;font-weight:600;color:#C8C0B8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">CA / mois</div>
+                    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;color:#1A1A1A;line-height:1">1 680 €</div>
+                    <div style="font-size:7.5px;color:#5A8F6A;margin-top:1px;font-weight:600">↑ +18%</div>
+                  </div>
+                </div>
+                <!-- Booking rows -->
+                <div style="font-size:8.5px;font-weight:700;color:#C8C0B8;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">À venir</div>
+                <div class="s5-r1" style="background:#fff;border:1.5px solid #E8E4DF;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                  <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#B8976A,#8B6E4E);display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:#fff;flex-shrink:0">SM</div>
+                  <div style="flex:1"><div style="font-size:10.5px;font-weight:700;color:#1A1A1A">Sophie Martin</div><div style="font-size:8.5px;color:#aaa">Séance Sophrologie · Mer 11 juin 9h00</div></div>
+                  <div style="text-align:right"><div style="font-size:8.5px;font-weight:600;padding:2px 6px;border-radius:100px;background:rgba(184,151,106,.1);color:#A07540">En attente</div><div style="font-size:9px;font-weight:600;color:#B8976A;margin-top:2px">70 €</div></div>
+                </div>
+                <div class="s5-r2" style="background:#fff;border:1.5px solid #E8E4DF;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px;margin-bottom:5px">
+                  <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#5A8F6A,#3d7050);display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:#fff;flex-shrink:0">HW</div>
+                  <div style="flex:1"><div style="font-size:10.5px;font-weight:700;color:#1A1A1A">Hugo Werner</div><div style="font-size:8.5px;color:#aaa">Séance Sophrologie · Ven 13 juin 11h00</div></div>
+                  <div style="text-align:right"><div style="font-size:8.5px;font-weight:600;padding:2px 6px;border-radius:100px;background:rgba(90,143,106,.08);color:#5A8F6A">Confirmé</div><div style="font-size:9px;font-weight:600;color:#B8976A;margin-top:2px">70 €</div></div>
+                </div>
+                <div class="s5-r3" style="background:#fff;border:1.5px solid #E8E4DF;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px">
+                  <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#5A6A8F,#3a4a6e);display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:#fff;flex-shrink:0">LB</div>
+                  <div style="flex:1"><div style="font-size:10.5px;font-weight:700;color:#1A1A1A">Léa Bernard</div><div style="font-size:8.5px;color:#aaa">Séance Sophrologie · Lun 16 juin 14h00</div></div>
+                  <div style="text-align:right"><div style="font-size:8.5px;font-weight:600;padding:2px 6px;border-radius:100px;background:rgba(90,143,106,.08);color:#5A8F6A">Confirmé</div><div style="font-size:9px;font-weight:600;color:#B8976A;margin-top:2px">70 €</div></div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /htw-screens -->
+        </div><!-- /htw-app -->
+      </div><!-- /htw-browser -->
+    </div><!-- /htw-wrap -->
+
+    <!-- Dot nav -->
+    <div class="htw-dots-nav">
+      <button class="htw-dot active" data-htw="1"></button>
+      <button class="htw-dot" data-htw="2"></button>
+      <button class="htw-dot" data-htw="3"></button>
+      <button class="htw-dot" data-htw="4"></button>
+      <button class="htw-dot" data-htw="5"></button>
     </div>
   </div>
 </section>
 
-<!-- USE CASES -->
-<section class="usecases-section" id="usecases">
+<!-- MARQUEE TESTIMONIAL STRIP -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="quote">« Mon planning est beaucoup plus stable. »</span><span class="author">— Claire L., Sophrologue</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« En 5 minutes j'avais une page pro claire. »</span><span class="author">— Thomas M., Coach sportif</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Vitryne a tout remplacé. »</span><span class="author">— Sarah B., Consultante RH</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Mes prospects réservent directement. »</span><span class="author">— Thomas M., Coach sportif</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Je vois enfin combien je gagne par semaine. »</span><span class="author">— Sarah B., Consultante RH</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Les rappels automatiques, c'est terminé les oublis. »</span><span class="author">— Claire L., Sophrologue</span></div>
+    <span class="marquee-sep">✦</span>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item"><span class="quote">« Mon planning est beaucoup plus stable. »</span><span class="author">— Claire L., Sophrologue</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« En 5 minutes j'avais une page pro claire. »</span><span class="author">— Thomas M., Coach sportif</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Vitryne a tout remplacé. »</span><span class="author">— Sarah B., Consultante RH</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Mes prospects réservent directement. »</span><span class="author">— Thomas M., Coach sportif</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Je vois enfin combien je gagne par semaine. »</span><span class="author">— Sarah B., Consultante RH</span></div>
+    <span class="marquee-sep">✦</span>
+    <div class="marquee-item"><span class="quote">« Les rappels automatiques, c'est terminé les oublis. »</span><span class="author">— Claire L., Sophrologue</span></div>
+    <span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- QR CODE SECTION -->
+<section class="qr-section" id="qr">
   <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="section-tag light">Pour qui</div>
-      <h2 class="section-title light">Pensé pour les professionnels<br>du service sur rendez-vous</h2>
-      <p class="section-desc light" style="margin:0 auto">Si vos clients prennent rendez-vous avant de vous voir, Vitryne est fait pour vous.</p>
-    </div>
-    <div class="uc-grid">
-      <div class="uc-card reveal d1">
-        <span class="uc-emoji">🧘</span>
-        <h3>Coachs & thérapeutes</h3>
-        <p>Yoga, sophrologie, coaching, naturopathie… Gérez vos séances individuelles et collectives sans effort.</p>
-        <span class="uc-tag">Séances & suivi client</span>
+    <div class="qr-inner">
+
+      <!-- Text -->
+      <div class="reveal-left">
+        <div class="section-tag dark">Partage instantané</div>
+        <h2 class="section-title dark">Un flash,<br>vos clients<br><em style="font-style:italic;color:var(--gold)">sont là.</em></h2>
+        <p class="section-desc dark" style="margin-top:8px">Votre Vitryne est accessible en un simple scan. Affichez votre QR code en vitrine, sur vos cartes de visite ou vos flyers — vos clients arrivent directement sur votre page de réservation, sans chercher, sans friction.</p>
+        <div class="qr-features">
+          <div class="qr-feat reveal d1">
+            <div class="qr-feat-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+            </div>
+            <div class="qr-feat-text">Généré automatiquement à la création de votre compte</div>
+          </div>
+          <div class="qr-feat reveal d2">
+            <div class="qr-feat-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div class="qr-feat-text">Téléchargeable en haute résolution pour l'impression</div>
+          </div>
+          <div class="qr-feat reveal d3">
+            <div class="qr-feat-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+            </div>
+            <div class="qr-feat-text">Partageable en bio Instagram, signature email ou site web</div>
+          </div>
+          <div class="qr-feat reveal d4">
+            <div class="qr-feat-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <div class="qr-feat-text">Toujours à jour — pointe vers votre page en temps réel</div>
+          </div>
+        </div>
       </div>
-      <div class="uc-card reveal d2">
-        <span class="uc-emoji">💼</span>
-        <h3>Consultants & freelances</h3>
-        <p>Conseil, formation, expertise… Professionnalisez votre prise de rendez-vous dès le premier contact.</p>
-        <span class="uc-tag">Prospection & conversion</span>
+
+      <!-- Visual -->
+      <div class="qr-visual-wrap reveal-right">
+        <div class="qr-card">
+          <div class="qr-badge">📱 Scan & réserve</div>
+          <div class="qr-card-url">vitryne.fr/sophie-b</div>
+          <div class="qr-code-wrap">
+            <!-- QR code SVG (stylized) -->
+            <svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="160" fill="#fff"/>
+              <!-- Top-left finder pattern -->
+              <rect x="8" y="8" width="46" height="46" rx="5" fill="#1A1A1A"/>
+              <rect x="15" y="15" width="32" height="32" rx="3" fill="#fff"/>
+              <rect x="22" y="22" width="18" height="18" rx="2" fill="#1A1A1A"/>
+              <!-- Top-right finder pattern -->
+              <rect x="106" y="8" width="46" height="46" rx="5" fill="#1A1A1A"/>
+              <rect x="113" y="15" width="32" height="32" rx="3" fill="#fff"/>
+              <rect x="120" y="22" width="18" height="18" rx="2" fill="#1A1A1A"/>
+              <!-- Bottom-left finder pattern -->
+              <rect x="8" y="106" width="46" height="46" rx="5" fill="#1A1A1A"/>
+              <rect x="15" y="113" width="32" height="32" rx="3" fill="#fff"/>
+              <rect x="22" y="120" width="18" height="18" rx="2" fill="#1A1A1A"/>
+              <!-- Data modules (timing & data) -->
+              <rect x="60" y="8" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="8" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="8" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="96" y="8" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="20" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="78" y="20" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="90" y="20" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="32" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="32" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="32" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="96" y="32" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="44" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="44" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="8" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="20" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="44" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="90" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="120" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="134" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="146" y="60" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="8" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="32" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="44" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="134" y="72" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="8" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="20" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="44" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="90" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="120" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="146" y="84" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="8" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="32" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="78" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="134" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="146" y="96" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="90" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="120" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="146" y="108" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="120" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="120" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="120" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="134" y="120" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="72" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="78" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="90" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="120" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="146" y="132" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="60" y="144" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="84" y="144" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="106" y="144" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <rect x="134" y="144" width="6" height="6" rx="1" fill="#1A1A1A"/>
+              <!-- Center logo -->
+              <rect x="64" y="64" width="32" height="32" rx="6" fill="#B8976A"/>
+              <text x="80" y="85" text-anchor="middle" fill="#fff" font-size="16" font-weight="700" font-family="Georgia,serif">V</text>
+            </svg>
+            <div class="qr-scan-line"></div>
+          </div>
+          <div class="qr-card-name">Sophie Beaumont</div>
+          <div class="qr-card-cta">→ Réserver une séance</div>
+          <div class="qr-badge-bottom">✓ Aucune app à installer</div>
+        </div>
       </div>
-      <div class="uc-card reveal d3">
-        <span class="uc-emoji">✂️</span>
-        <h3>Prestataires de service</h3>
-        <p>Coiffeurs, photographes, esthéticiennes… Remplissez votre planning sans y passer vos soirées.</p>
-        <span class="uc-tag">Planning & récurrence</span>
-      </div>
+
     </div>
   </div>
 </section>
@@ -3167,59 +3096,71 @@ updateNav();
 
 // Mouse tilt removed — scroll-only animation
 
-// ─── Interactive demo steps ───
+// ─── How it works stepper ───
 (function() {
-  const steps = document.querySelectorAll('.idem-step');
-  const screens = document.querySelectorAll('.idem-screen');
-  const fill = document.getElementById('idemFill');
+  const browser = document.getElementById('htwBrowser');
+  const sidebar = document.getElementById('htwSidebar');
+  const urlBar  = document.getElementById('htwUrl');
+  const tabs    = document.querySelectorAll('.htw-tab');
+  const infos   = document.querySelectorAll('.htw-info');
+  const screens = document.querySelectorAll('.htw-screen');
+  const dots    = document.querySelectorAll('.htw-dot');
+
+  const URLS = [
+    'app.vitryne.io/dashboard/vitrine',
+    'app.vitryne.io/dashboard/services',
+    'app.vitryne.io/dashboard/availabilities',
+    'vitryne.io/claire-l',
+    'app.vitryne.io/dashboard/bookings',
+  ];
+  const NAV = ['vitrine', 'services', 'availabilities', null, 'bookings'];
+
   let current = 1;
-  let autoTimer = null;
+  let timer = null;
 
-  function goTo(n) {
+  function setActive(n) {
     current = n;
-    steps.forEach(s => s.classList.toggle('active', +s.dataset.step === n));
-    screens.forEach(s => s.classList.toggle('active', s.id === 'idem-screen-' + n));
-    // progress fill: 0%, 50%, 100%
-    if (fill) fill.style.height = ((n - 1) / (steps.length - 1) * 100) + '%';
+    var i = n - 1;
+    tabs.forEach(function(t){ t.classList.toggle('active', +t.dataset.htw === n); });
+    infos.forEach(function(p){ p.classList.toggle('active', +p.dataset.htw === n); });
+    dots.forEach(function(d){ d.classList.toggle('active', +d.dataset.htw === n); });
+    screens.forEach(function(s){ s.classList.toggle('active', s.id === 'htw-s' + n); });
+    if (urlBar) urlBar.textContent = URLS[i];
+    if (sidebar) sidebar.classList.toggle('hide', n === 4);
+    if (sidebar) {
+      sidebar.querySelectorAll('.htw-sb-item').forEach(function(el){
+        el.classList.toggle('act', el.dataset.nav === NAV[i]);
+      });
+    }
+    // Restart CSS animations
+    if (browser) {
+      browser.classList.remove('playing');
+      void browser.offsetWidth;
+      browser.classList.add('playing');
+    }
   }
 
-  steps.forEach(step => {
-    step.addEventListener('click', () => {
-      goTo(+step.dataset.step);
-      clearInterval(autoTimer);
-      autoTimer = setInterval(advance, 4000);
-    });
-  });
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ setActive(+t.dataset.htw); resetTimer(); }); });
+  dots.forEach(function(d){ d.addEventListener('click', function(){ setActive(+d.dataset.htw); resetTimer(); }); });
 
-  function advance() {
-    goTo(current < steps.length ? current + 1 : 1);
+  function advance() { setActive(current < 5 ? current + 1 : 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(advance, 5000);
   }
 
-  // Auto-advance only when section is visible
-  const wrap = document.querySelector('.idem-wrap');
+  // Auto-advance only when visible
+  var wrap = document.querySelector('.htw-wrap');
   if (wrap && 'IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        if (!autoTimer) autoTimer = setInterval(advance, 4000);
-      } else {
-        clearInterval(autoTimer);
-        autoTimer = null;
-      }
-    }, { threshold: 0.3 });
+    var obs = new IntersectionObserver(function(entries){
+      if (entries[0].isIntersecting) { if (!timer) resetTimer(); }
+      else { clearInterval(timer); timer = null; }
+    }, { threshold: 0.2 });
     obs.observe(wrap);
   }
 
-  // Copy button on step 2
-  const copyBtn = document.getElementById('idemCopyBtn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
-      copyBtn.textContent = 'Copié ✓';
-      copyBtn.classList.add('copied');
-      setTimeout(() => { copyBtn.textContent = 'Copier'; copyBtn.classList.remove('copied'); }, 2000);
-    });
-  }
-
-  goTo(1);
+  setActive(1);
 })();
 </script>
 </body>
