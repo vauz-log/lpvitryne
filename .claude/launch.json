@@ -4,7 +4,7 @@
     {
       "name": "landing",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "4321", "/Users/jules/Desktop/Landing-Vitryne"],
+      "runtimeArgs": ["serve", "-p", "4321", "/Users/jules/Documents/lp-vitryne/Landing-Vitryne"],
       "port": 4321
     }
   ]
