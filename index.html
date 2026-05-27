@@ -1222,54 +1222,90 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
 @media(max-width:768px){.qr-section{padding:70px 0}.qr-inner{gap:40px}}
 
 /* ═══════════════════════════════════════════════
+   HERO MOBILE PREVIEW
+   ═══════════════════════════════════════════════ */
+.hero-mobile-preview{display:none;flex-direction:column;max-width:340px;margin:28px auto 0;background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.08);border:1px solid var(--border)}
+.hmp-card{background:var(--cream);border-radius:12px;padding:16px;margin-bottom:12px}
+.hmp-label{font-size:10px;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.hmp-value{font-family:var(--font-display);font-size:1.05rem;color:var(--charcoal);margin-bottom:2px}
+.hmp-sub{font-size:12px;color:var(--text-secondary)}
+.hmp-row{display:flex;gap:10px}
+.hmp-pill{flex:1;background:var(--gold-surface);border:1px solid rgba(184,151,106,.25);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.hmp-pill-label{font-size:10px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.04em}
+.hmp-pill-val{font-family:var(--font-display);font-size:1rem;color:var(--charcoal)}
+
+/* ═══════════════════════════════════════════════
+   HTW MOBILE STEPS
+   ═══════════════════════════════════════════════ */
+.htw-mobile-steps{display:none;flex-direction:column;gap:0;margin-top:32px}
+.htw-ms{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start}
+.htw-ms:last-child{border-bottom:none}
+.htw-ms-num{width:36px;height:36px;border-radius:50%;background:rgba(184,151,106,.15);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;color:var(--gold);flex-shrink:0;margin-top:2px}
+.htw-ms-tag{font-size:11px;font-weight:600;color:var(--gold);background:rgba(184,151,106,.15);padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:6px}
+.htw-ms-title{font-family:var(--font-display);font-size:1.05rem;color:#fff;margin-bottom:6px;line-height:1.3}
+.htw-ms-desc{font-size:13.5px;color:rgba(255,255,255,.65);line-height:1.55;margin-bottom:0}
+.htw-ms-badge{font-size:12px;color:var(--gold);margin-top:8px;font-weight:500}
+
+/* ═══════════════════════════════════════════════
    MOBILE — COMPREHENSIVE IMPROVEMENTS
    ═══════════════════════════════════════════════ */
 @media(max-width:768px){
-
   /* ── Hero ── */
   .hero-visual{display:none}
+  .hero-mobile-preview{display:flex;flex-direction:column}
   .hero-content{text-align:center;max-width:100%}
   .hero h1{font-size:2rem;line-height:1.18}
   .hero h1 br{display:none}
-  .hero-sub,.hero-for{margin-left:auto;margin-right:auto;max-width:340px}
+  .hero-sub,.hero-for{margin:0 auto;max-width:340px}
   .hero-meta{justify-content:center;flex-wrap:wrap;gap:8px 16px}
   .hero-secondary{display:none}
   .hero-capture{max-width:380px;margin-left:auto;margin-right:auto}
-  .hero-stats{gap:8px}
-  .hero-stat-item{padding:12px 10px;min-width:90px}
+  .hero-stats{gap:8px;margin-top:16px}
+  .hero-stat-item{padding:12px 10px;min-width:88px;flex:0 0 calc(50% - 8px);max-width:calc(50% - 8px)}
   .hero-stat-num{font-size:1.25rem}
-  .hero-tag{margin-left:auto;margin-right:auto;display:inline-flex}
+  .hero-tag{margin:0 auto 16px;display:inline-flex}
 
   /* ── Sections spacing ── */
   .problems{padding:60px 0}
   .bento-section{padding:60px 0}
-  .how-it-works{padding:60px 0}
+  .how-section{padding:60px 0}
   .usecases-section{padding:60px 0}
-  .vitrine-showcase{padding:60px 0}
+  .vitrine-showcase{padding:60px 0!important}
   .marquee-section{padding:0}
   .integrations-bar{padding:40px 0}
   .testimonials{padding:60px 0}
   .pricing-section{padding:60px 0}
-  .final-section{padding:60px 0}
+  .final-cta{padding:60px 0}
   .compare-section{padding:60px 0}
 
   /* ── Section titles ── */
   .section-title{font-size:1.65rem;text-align:center}
-  .section-sub{text-align:center;margin-left:auto;margin-right:auto}
+  .section-title br{display:none}
+  .section-sub,.section-desc{text-align:center;margin-left:auto;margin-right:auto}
   .section-head{text-align:center}
+  .section-tag{margin-left:auto;margin-right:auto}
 
-  /* ── "Comment ça marche" — hide desktop app mock ── */
-  .htw-app{display:none}
-  .htw-infos{padding:0}
+  /* ── HTW (Comment ça marche) ── */
+  .htw-app,.htw-browser{display:none}
+  .htw-mobile-steps{display:flex}
+  .htw-infos{display:none}
+  .htw-tabs{display:none}
+  .htw-wrap{display:block}
   .htw-info-title{font-size:1.3rem}
-  .htw-info-desc{font-size:14px}
-  .htw-tabs{justify-content:center;flex-wrap:wrap}
 
   /* ── Bento ── */
   .b-card{padding:20px}
   .b-icon{width:36px;height:36px;font-size:.95rem}
   .b-card h3{font-size:1rem}
   .b-card p{font-size:13.5px}
+
+  /* ── Vitrine Showcase ── */
+  .vs-browser{display:none}
+  .vs-inner{text-align:center}
+  .vs-text h2{font-size:1.65rem}
+  .vs-text h2 br{display:none}
+  .vs-feats{justify-content:center}
+  .vs-mockup-wrap{display:flex;justify-content:center}
 
   /* ── Steps ── */
   .step{gap:16px;padding:20px 0}
@@ -1289,6 +1325,11 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   .faq-q{font-size:14px;padding:16px 0}
   .faq-a-inner{font-size:13.5px}
 
+  /* ── Final CTA ── */
+  .final-cta h2{font-size:1.65rem}
+  .final-cta h2 br{display:none}
+  .final-cta-box{padding:40px 24px}
+
   /* ── Footer ── */
   .footer-brand-text{font-size:1.1rem}
   .footer{padding:48px 0 24px}
@@ -1296,22 +1337,23 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   /* ── Problem cards ── */
   .p-card{padding:24px 20px}
 
-  /* ── Vitrine showcase — hide desktop browser ── */
-  .vs-browser{display:none}
-  .vs-inner{text-align:center}
-  .vs-text h2{font-size:1.65rem}
-
   /* ── Compare ── */
   .compare-col{padding:24px 20px}
 
   /* ── QR section ── */
   .qr-feat-text{font-size:14px}
   .qr-badge,.qr-badge-bottom{display:none}
+  .qr-inner h2 br{display:none}
 
   /* ── Integrations ── */
   .integrations-label{font-size:12px}
   .integ-item{font-size:11px}
   .integ-item svg{width:16px;height:16px}
+  .integrations-logos{gap:16px 24px}
+
+  /* ── Marquee ── */
+  .marquee-strip{padding:14px 0}
+  .marquee-item .quote{font-size:13px}
 }
 
 /* ═══════════════════════════════════════════════
@@ -1327,13 +1369,14 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   .hero-for{font-size:13px}
   .hero-capture input,.hero-capture button{font-size:14px}
   .hero-stats{gap:6px}
-  .hero-stat-item{min-width:80px;padding:10px 6px}
+  .hero-stat-item{padding:10px 6px;min-width:76px}
   .hero-stat-num{font-size:1.1rem}
   .hero-stat-label{font-size:9.5px}
 
   /* Sections */
-  .section-title{font-size:1.45rem}
+  .section-title{font-size:1.4rem}
   .pricing-grid{margin-top:32px}
+  .hmp-pill-val{font-size:.9rem}
 
   /* Bento */
   .b-card{padding:18px 16px}
@@ -1343,7 +1386,6 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   .pr-features li{font-size:13px}
 
   /* Steps */
-  .steps-wrap{gap:0}
   .step-time{font-size:11px}
 
   /* FAQ */
@@ -1436,6 +1478,25 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
         </a>
       </div>
 
+    </div>
+
+    <!-- MOBILE HERO VISUAL (mobile only) -->
+    <div class="hero-mobile-preview">
+      <div class="hmp-card">
+        <div class="hmp-label">Prochain RDV</div>
+        <div class="hmp-value">Sophie M. · 9h00</div>
+        <div class="hmp-sub">Séance découverte · 1h</div>
+      </div>
+      <div class="hmp-row">
+        <div class="hmp-pill">
+          <span class="hmp-pill-label">À venir</span>
+          <span class="hmp-pill-val">18 RDV</span>
+        </div>
+        <div class="hmp-pill">
+          <span class="hmp-pill-label">CA semaine</span>
+          <span class="hmp-pill-val">1 680 €</span>
+        </div>
+      </div>
     </div>
 
     <!-- Mockup produit -->
@@ -2515,6 +2576,55 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
           </div><!-- /htw-screens -->
         </div><!-- /htw-app -->
       </div><!-- /htw-browser -->
+
+      <!-- MOBILE STEPS — shown only on mobile -->
+      <div class="htw-mobile-steps">
+        <div class="htw-ms">
+          <div class="htw-ms-num">1</div>
+          <div class="htw-ms-body">
+            <div class="htw-ms-tag">2 min</div>
+            <h3 class="htw-ms-title">Créez votre vitrine professionnelle</h3>
+            <p class="htw-ms-desc">Nom, photo, accroche et couleur de marque. Votre identité pro en ligne en moins de 2 minutes.</p>
+            <div class="htw-ms-badge">✓ Votre page est publiée instantanément</div>
+          </div>
+        </div>
+        <div class="htw-ms">
+          <div class="htw-ms-num">2</div>
+          <div class="htw-ms-body">
+            <div class="htw-ms-tag">3 min</div>
+            <h3 class="htw-ms-title">Ajoutez vos services &amp; tarifs</h3>
+            <p class="htw-ms-desc">Créez vos prestations avec titre, durée et prix. Activez le paiement en ligne via Stripe.</p>
+            <div class="htw-ms-badge">✓ Paiements Stripe sécurisés</div>
+          </div>
+        </div>
+        <div class="htw-ms">
+          <div class="htw-ms-num">3</div>
+          <div class="htw-ms-body">
+            <div class="htw-ms-tag">2 min</div>
+            <h3 class="htw-ms-title">Définissez vos disponibilités</h3>
+            <p class="htw-ms-desc">Activez vos jours de travail, définissez vos horaires. Vitryne génère automatiquement les créneaux.</p>
+            <div class="htw-ms-badge">✓ Zéro double-réservation possible</div>
+          </div>
+        </div>
+        <div class="htw-ms">
+          <div class="htw-ms-num">4</div>
+          <div class="htw-ms-body">
+            <div class="htw-ms-tag">0 min de votre côté</div>
+            <h3 class="htw-ms-title">Vos clients réservent 24h/24</h3>
+            <p class="htw-ms-desc">Partagez votre lien. Vos clients choisissent, paient et reçoivent une confirmation automatique.</p>
+            <div class="htw-ms-badge">✓ Rappels SMS &amp; email automatiques</div>
+          </div>
+        </div>
+        <div class="htw-ms">
+          <div class="htw-ms-num">5</div>
+          <div class="htw-ms-body">
+            <div class="htw-ms-tag">En continu</div>
+            <h3 class="htw-ms-title">Pilotez vos revenus depuis l'agenda</h3>
+            <p class="htw-ms-desc">Consultez vos réservations, confirmez ou annulez d'un clic, suivez votre CA en temps réel.</p>
+            <div class="htw-ms-badge">✓ Votre activité tourne même quand vous dormez</div>
+          </div>
+        </div>
+      </div>
     </div><!-- /htw-wrap -->
 
     <!-- Dot nav -->
