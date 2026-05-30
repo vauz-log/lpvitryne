@@ -21,8 +21,8 @@
         ' <a href="confidentialite.html" style="color:#B8976A;text-decoration:underline">En savoir plus</a>.</p>',
       '</div>',
       '<div style="display:flex;gap:8px;align-items:center;flex-shrink:0">',
-        '<button id="vt-cookie-decline" style="padding:8px 16px;font-size:13px;font-weight:500;color:#666;background:#F0EDE8;border:none;border-radius:7px;cursor:pointer;font-family:inherit">Refuser</button>',
-        '<button id="vt-cookie-accept" style="padding:8px 18px;font-size:13px;font-weight:600;color:#fff;background:#1A1A1A;border:none;border-radius:7px;cursor:pointer;font-family:inherit">Accepter</button>',
+        '<button id="vt-cookie-decline" style="padding:8px 18px;font-size:13px;font-weight:600;color:#1A1A1A;background:#fff;border:1.5px solid #1A1A1A;border-radius:7px;cursor:pointer;font-family:inherit">Refuser</button>',
+        '<button id="vt-cookie-accept" style="padding:8px 18px;font-size:13px;font-weight:600;color:#fff;background:#1A1A1A;border:1.5px solid #1A1A1A;border-radius:7px;cursor:pointer;font-family:inherit">Accepter</button>',
       '</div>',
     '</div>'
   ].join('');
