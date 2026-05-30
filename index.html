@@ -118,11 +118,11 @@ ul{list-style:none}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:0 auto;padding:0 24px;height:64px}
 .nav.scrolled{background:rgba(253,252,250,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.05)}
 
-.nav-brand{display:flex;align-items:center;gap:10px;transition:transform .3s var(--ease-out-expo)}
-.nav-brand:hover{transform:scale(1.03)}
-.nav-brand-icon{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#1A1A1A,#444);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.nav-brand-icon span{color:#fff;font-size:15px;font-weight:700;font-family:var(--font-body);position:relative;z-index:1}
-.nav-brand-text{font-weight:700;font-size:18px;color:var(--charcoal);letter-spacing:-.01em}
+.nav-brand{display:flex;align-items:center;transition:opacity .2s}
+.nav-brand:hover{opacity:.75}
+.nav-brand-icon{display:none}
+.nav-brand-text{font-family:var(--font-display);font-weight:400;font-size:22px;color:var(--charcoal);letter-spacing:-.01em;line-height:1}
+.nav-brand-text::after{content:'·';color:var(--gold);margin-left:1px}
 
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{font-size:14px;font-weight:500;color:#555;transition:color .25s;position:relative}
@@ -874,9 +874,9 @@ ul{list-style:none}
 footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0 32px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
 .footer-brand-name{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.footer-brand-icon{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1A1A1A,#444);display:flex;align-items:center;justify-content:center}
-.footer-brand-icon span{color:#fff;font-size:13px;font-weight:700}
-.footer-brand-text{font-weight:700;font-size:16px;color:var(--charcoal)}
+.footer-brand-icon{display:none}
+.footer-brand-text{font-family:var(--font-display);font-weight:400;font-size:20px;color:var(--charcoal)}
+.footer-brand-text::after{content:'·';color:var(--gold);margin-left:1px}
 .footer-brand p{font-size:13.5px;color:var(--text-tertiary);line-height:1.65;max-width:280px}
 .footer-col h4{font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:16px}
 .footer-col a{display:block;font-size:13.5px;color:var(--text-tertiary);margin-bottom:10px;transition:all .3s var(--ease-out-expo)}
