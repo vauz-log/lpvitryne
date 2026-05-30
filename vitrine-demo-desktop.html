@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sara Lemaire — Yoga Paris 11e</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#191512;
+  --ink-soft:#3b332d;
+  --muted:#7a7068;
+  --line:rgba(25,21,18,.08);
+  --line-strong:rgba(25,21,18,.14);
+  --paper:#fffdf8;
+  --cream:#f7f2e8;
+  --ivory:#fcf8f0;
+  --sand:#eee4d5;
+  --accent:#C97B5A;
+  --accent-2:#E8B183;
+  --accent-soft:rgba(201,123,90,0.10);
+  --accent-border:rgba(201,123,90,0.28);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Manrope',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --max:960px;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);font-size:15px;color:var(--ink);
+  background:var(--paper);-webkit-font-smoothing:antialiased;
+}
+
+/* ──────────────────────────────────
+   HEADER sticky
+────────────────────────────────── */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  height:60px;
+  background:rgba(255,253,248,.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;
+}
+.header-inner{
+  max-width:var(--max);margin:0 auto;padding:0 40px;
+  width:100%;display:flex;align-items:center;gap:16px;
+}
+.header-brand{
+  display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;
+}
+.header-logo{
+  width:26px;height:26px;border-radius:7px;
+  background:var(--ink);display:grid;place-items:center;
+}
+.header-logo span{color:#fff;font-size:11px;font-weight:800;font-family:var(--sans)}
+.header-site-name{
+  font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+.header-sep{flex:1}
+.header-identity{
+  display:flex;align-items:center;gap:9px;
+}
+.header-avatar{
+  width:30px;height:30px;border-radius:9px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0;
+}
+.header-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.header-name{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.header-tagline{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:var(--muted)}
+.header-actions{display:flex;align-items:center;gap:8px;margin-left:20px}
+.header-icon-btn{
+  width:34px;height:34px;border-radius:10px;
+  border:1px solid var(--line-strong);background:transparent;
+  display:grid;place-items:center;color:var(--ink-soft);
+  text-decoration:none;cursor:pointer;
+  transition:border-color .18s,background .18s;
+}
+.header-icon-btn:hover{border-color:var(--accent-border);background:var(--ivory)}
+.header-icon-btn svg{width:14px;height:14px}
+.header-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:0 18px;height:36px;border-radius:10px;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-size:12.5px;font-weight:700;
+  border:none;cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 14px -6px rgba(25,21,18,.35);
+  transition:background .2s,transform .2s var(--ease);
+  white-space:nowrap;
+}
+.header-cta:hover{background:#0e0b09;transform:translateY(-1px)}
+.header-cta svg{width:11px;height:11px}
+
+/* ──────────────────────────────────
+   HERO — pleine largeur
+────────────────────────────────── */
+.hero{
+  position:relative;height:360px;overflow:hidden;
+  background:linear-gradient(150deg,var(--accent) 0%,var(--accent-2) 100%);
+  display:flex;align-items:flex-end;
+}
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 30%;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(25,21,18,.08) 0%,
+    rgba(25,21,18,.18) 40%,
+    rgba(25,21,18,.72) 100%);
+}
+/* grain sur le hero */
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:var(--max);margin:0 auto;padding:0 40px 52px;
+  width:100%;
+  display:flex;align-items:flex-end;gap:28px;
+}
+.hero-avatar{
+  width:90px;height:90px;border-radius:22px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 3px rgba(255,255,255,.3),0 16px 32px -12px rgba(0,0,0,.4);
+}
+.hero-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-avatar::after{content:"";position:absolute;inset:1px;border-radius:21px;border:1px solid rgba(255,255,255,.18);pointer-events:none}
+.hero-avatar-init{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--serif);font-size:36px;font-style:italic;color:#fff;
+}
+.hero-text{}
+.hero-cat{
+  font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);margin-bottom:8px;display:block;
+}
+.hero-name{
+  font-family:var(--serif);font-size:48px;line-height:.96;
+  letter-spacing:-.02em;color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.2);
+}
+.hero-loc{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;font-size:13px;color:rgba(255,255,255,.72);
+}
+.hero-loc svg{width:12px;height:12px}
+.hero-right{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:12px;padding-bottom:4px}
+.hero-avail{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.9);
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(8px);
+  padding:6px 12px;border-radius:999px;
+}
+.hero-avail-dot{width:6px;height:6px;border-radius:999px;background:#6ee7b7}
+.hero-socials{display:flex;align-items:center;gap:7px}
+.hero-icon-btn{
+  width:34px;height:34px;border-radius:10px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(8px);
+  display:grid;place-items:center;color:#fff;text-decoration:none;flex-shrink:0;
+  transition:background .18s,transform .18s var(--ease);
+}
+.hero-icon-btn:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.hero-icon-btn svg{width:14px;height:14px}
+.hero-socials-sep{width:1px;height:18px;background:rgba(255,255,255,.2)}
+
+/* ──────────────────────────────────
+   BARRE STATS — crème pleine largeur
+────────────────────────────────── */
+.stats-bar{
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
+}
+.stats-bar-inner{
+  max-width:var(--max);margin:0 auto;padding:0 40px;
+  display:flex;align-items:stretch;
+  divide-x:1px solid var(--line);
+}
+.stat-item{
+  flex:1;padding:20px 0;text-align:center;
+  border-right:1px solid var(--line);
+}
+.stat-item:last-child{border-right:none}
+.stat-val{
+  display:block;font-family:var(--serif);font-size:22px;
+  font-style:italic;color:var(--ink);line-height:1;
+}
+.stat-label{
+  display:block;font-family:var(--mono);font-size:8.5px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-top:5px;
+}
+
+/* ──────────────────────────────────
+   SECTION ABOUT
+────────────────────────────────── */
+.about-section{
+  max-width:var(--max);margin:0 auto;padding:56px 40px;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
+}
+.about-left{}
+.about-kicker{
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);font-weight:700;
+  margin-bottom:14px;display:block;
+}
+.about-desc{font-size:15px;line-height:1.75;color:var(--ink-soft)}
+.about-right{display:flex;flex-direction:column;gap:20px}
+
+/* Google reviews bloc */
+.google-bloc{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;background:var(--ivory);
+  border:1px solid var(--line);border-radius:16px;
+}
+.google-rating-big{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--ink);line-height:1}
+.google-right{}
+.google-stars{display:flex;gap:2px;margin-bottom:4px}
+.google-stars svg{width:13px;height:13px}
+.google-count{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--muted)}
+
+/* Contact bloc */
+.contact-bloc{
+  display:flex;flex-direction:column;gap:8px;
+}
+.contact-row{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;border-radius:12px;
+  border:1px solid var(--line);background:var(--ivory);
+  text-decoration:none;color:var(--ink-soft);font-size:13px;font-weight:600;
+  transition:border-color .18s,transform .18s var(--ease);
+}
+.contact-row:hover{border-color:var(--accent-border);transform:translateX(3px)}
+.contact-row svg{width:15px;height:15px;flex-shrink:0;color:var(--accent)}
+
+/* ──────────────────────────────────
+   SECTION SERVICES
+────────────────────────────────── */
+.services-section{
+  background:var(--cream);
+  border-top:1px solid var(--line);
+}
+.services-inner{
+  max-width:var(--max);margin:0 auto;padding:56px 40px;
+}
+.section-hdr{
+  display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;
+}
+.section-title{
+  font-family:var(--serif);font-size:32px;letter-spacing:-.02em;color:var(--ink);
+}
+.section-count{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+.svc-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+}
+
+.svc-card{
+  background:var(--paper);border-radius:20px;overflow:hidden;
+  border:1px solid var(--line);cursor:pointer;
+  box-shadow:0 2px 10px rgba(25,21,18,.05);
+  transition:transform .24s var(--ease),box-shadow .24s var(--ease),border-color .24s;
+  text-align:left;font-family:inherit;
+  outline:none;-webkit-tap-highlight-color:transparent;
+}
+.svc-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 44px -20px rgba(25,21,18,.18),0 6px 16px -8px rgba(25,21,18,.08);
+  border-color:var(--accent-border);
+}
+.svc-card-img{
+  position:relative;height:180px;overflow:hidden;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+}
+.svc-card-img img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .5s var(--ease);
+}
+.svc-card:hover .svc-card-img img{transform:scale(1.05)}
+.svc-card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(25,21,18,.52) 100%)}
+.svc-card-badge-price{
+  position:absolute;top:12px;right:12px;z-index:2;
+  font-family:var(--serif);font-size:14px;font-style:italic;color:#fff;
+  background:rgba(25,21,18,.44);backdrop-filter:blur(8px);
+  padding:4px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+}
+.svc-card-badge-dur{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.9);background:rgba(25,21,18,.38);backdrop-filter:blur(8px);
+  padding:4px 9px;border-radius:999px;
+}
+.svc-card-name{
+  position:absolute;bottom:14px;left:16px;right:16px;z-index:2;
+  font-family:var(--serif);font-size:19px;font-style:italic;
+  color:#fff;line-height:1.15;text-shadow:0 1px 5px rgba(0,0,0,.3);
+}
+.svc-card-body{padding:16px 18px 18px}
+.svc-card-desc{
+  font-size:12.5px;color:var(--muted);line-height:1.6;
+  margin-bottom:12px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.svc-card-foot{display:flex;align-items:center;gap:7px}
+.svc-card-tag{
+  font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-soft);
+  border:1px solid var(--accent-border);padding:3px 9px;border-radius:999px;
+}
+.svc-card-cta{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);font-weight:700;
+  padding:6px 12px;border-radius:8px;
+  background:var(--sand);border:1px solid var(--line-strong);
+  transition:background .18s,border-color .18s;
+}
+.svc-card:hover .svc-card-cta{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.svc-card-cta svg{width:9px;height:9px}
+
+/* ──────────────────────────────────
+   PAGE SERVICE DETAIL (pleine page)
+────────────────────────────────── */
+.detail-page{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:var(--paper);overflow-y:auto;
+}
+.detail-page.open{display:block}
+
+/* Header du detail */
+.detail-header{
+  position:sticky;top:0;z-index:10;
+  height:60px;display:flex;align-items:center;
+  background:rgba(255,253,248,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.detail-header-inner{
+  max-width:var(--max);margin:0 auto;padding:0 40px;
+  width:100%;display:flex;align-items:center;gap:14px;
+}
+.detail-back{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);border:none;background:none;cursor:pointer;
+  padding:8px 12px;border-radius:9px;border:1px solid var(--line-strong);
+  transition:color .18s,border-color .18s,background .18s;
+}
+.detail-back:hover{color:var(--ink);border-color:var(--line-strong);background:var(--cream)}
+.detail-back svg{width:13px;height:13px}
+.detail-header-title{
+  font-family:var(--serif);font-size:18px;letter-spacing:-.015em;color:var(--ink);
+}
+.detail-header-price{
+  margin-left:auto;font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink);
+}
+
+/* Hero du service */
+.detail-hero{
+  position:relative;height:420px;overflow:hidden;
+  background:linear-gradient(150deg,var(--accent),var(--accent-2));
+}
+.detail-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.detail-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,21,18,.04) 0%,rgba(25,21,18,.65) 100%)}
+.detail-hero-content{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  max-width:var(--max);margin:0 auto;padding:0 40px 44px;
+}
+.detail-hero-name{
+  font-family:var(--serif);font-size:44px;font-style:italic;
+  line-height:1.0;letter-spacing:-.02em;color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.22);
+  margin-bottom:12px;
+}
+.detail-hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.detail-hero-tag{
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.9);
+  background:rgba(25,21,18,.36);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.18);
+  padding:5px 11px;border-radius:999px;
+}
+
+/* Contenu detail : 2 colonnes */
+.detail-content{
+  max-width:var(--max);margin:0 auto;padding:48px 40px 80px;
+  display:grid;grid-template-columns:1fr 400px;gap:48px;align-items:start;
+}
+
+/* Colonne infos */
+.detail-info{}
+.detail-provider{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:20px;margin-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+.detail-prov-av{
+  width:44px;height:44px;border-radius:13px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));flex-shrink:0;
+}
+.detail-prov-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.detail-prov-av-init{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--serif);font-size:18px;font-style:italic;color:#fff;
+}
+.detail-prov-name{font-size:14px;font-weight:700;color:var(--ink)}
+.detail-prov-sub{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--muted);margin-top:3px}
+
+.detail-desc-title{
+  font-family:var(--serif);font-size:22px;color:var(--ink);margin-bottom:14px;
+}
+.detail-desc{font-size:14.5px;line-height:1.75;color:var(--ink-soft)}
+
+/* Colonne calendrier */
+.detail-cal-col{
+  position:sticky;top:80px;
+  background:var(--cream);border:1px solid var(--line);
+  border-radius:22px;padding:24px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.cal-title{
+  font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:2px;
+}
+.cal-sub{font-size:12px;color:var(--muted)}
+
+.cal-month-nav{display:flex;align-items:center;justify-content:space-between}
+.cal-month-label{font-family:var(--serif);font-size:15px;color:var(--ink)}
+.cal-nav-btn{
+  width:28px;height:28px;border-radius:8px;border:1px solid var(--line-strong);
+  background:var(--paper);display:grid;place-items:center;cursor:pointer;outline:none;
+  transition:background .15s;
+}
+.cal-nav-btn:hover{background:var(--sand)}
+.cal-nav-btn svg{width:11px;height:11px;color:var(--ink-soft)}
+.cal-days-hdr{
+  display:grid;grid-template-columns:repeat(7,1fr);text-align:center;
+  font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px;
+}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{
+  aspect-ratio:1;border-radius:8px;border:none;background:transparent;
+  font-family:var(--sans);font-size:12px;font-weight:600;color:var(--muted);
+  cursor:default;display:grid;place-items:center;
+}
+.cal-day.other-month{opacity:.3}
+.cal-day.available{
+  background:var(--paper);color:var(--ink);border:1px solid var(--line);cursor:pointer;
+  outline:none;transition:background .15s,border-color .15s,transform .15s;
+}
+.cal-day.available:hover{background:var(--ivory);border-color:var(--accent-border);transform:scale(1.08)}
+.cal-day.active{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important}
+.cal-day.today-m{position:relative}
+.cal-day.today-m::after{content:"";position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:3px;height:3px;border-radius:999px;background:var(--accent)}
+
+.slots-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.slots-list{display:flex;flex-direction:column;gap:6px}
+.slot-btn{
+  display:flex;align-items:center;gap:9px;width:100%;
+  padding:10px 12px;border-radius:11px;border:1px solid var(--line);
+  background:var(--paper);font-family:inherit;cursor:pointer;outline:none;
+  transition:background .15s,border-color .15s,transform .15s;
+}
+.slot-btn:hover{background:var(--ivory);border-color:var(--accent-border);transform:translateY(-1px)}
+.slot-btn.active{background:var(--accent-soft);border-color:var(--accent-border)}
+.slot-radio{width:13px;height:13px;border-radius:999px;border:1.5px solid var(--line-strong);flex-shrink:0;position:relative}
+.slot-btn.active .slot-radio{background:var(--accent);border-color:var(--accent)}
+.slot-btn.active .slot-radio::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:4px;border-radius:999px;background:#fff}
+.slot-time{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:-.005em}
+.slot-free{margin-left:auto;font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#4a7c5c}
+
+.confirm-btn{
+  width:100%;padding:14px;border-radius:13px;
+  background:var(--ink);color:var(--paper);font-family:var(--sans);
+  font-size:13.5px;font-weight:700;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 10px 22px -12px rgba(25,21,18,.38);
+  outline:none;transition:transform .2s var(--ease),background .2s,opacity .2s;
+}
+.confirm-btn:not(.ready){opacity:.38;cursor:not-allowed}
+.confirm-btn.ready:hover{transform:translateY(-1px);background:#0e0b09}
+.cancel-note{text-align:center;font-family:var(--mono);font-size:8px;letter-spacing:.05em;color:var(--muted)}
+
+.confirmed-box{display:none;align-items:flex-start;gap:9px;padding:13px 14px;border-radius:13px;background:rgba(74,124,92,.08);border:1px solid rgba(74,124,92,.2)}
+.confirmed-box.show{display:flex}
+.confirmed-icon{width:24px;height:24px;border-radius:999px;background:#4a7c5c;color:#fff;display:grid;place-items:center;flex-shrink:0}
+.confirmed-t{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3}
+.confirmed-s{margin-top:1px;font-size:10.5px;color:var(--muted)}
+
+/* ──────────────────────────────────
+   FOOTER
+────────────────────────────────── */
+.site-footer{
+  background:var(--ink);padding:32px 40px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.footer-logo{width:28px;height:28px;border-radius:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center}
+.footer-logo span{color:#fff;font-size:12px;font-weight:800}
+.footer-text{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* WhatsApp FAB */
+.wa-fab{
+  position:fixed;bottom:28px;right:28px;z-index:300;
+  width:52px;height:52px;border-radius:999px;background:#25D366;color:#fff;
+  display:grid;place-items:center;text-decoration:none;
+  box-shadow:0 8px 28px rgba(37,211,102,.42);
+  transition:transform .22s var(--ease),box-shadow .22s;
+}
+.wa-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 36px rgba(37,211,102,.5)}
+.wa-fab svg{width:24px;height:24px}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="header-brand">
+      <div class="header-logo"><span>V</span></div>
+      <span class="header-site-name">Vitryne</span>
+    </a>
+    <div class="header-sep"></div>
+    <div class="header-identity">
+      <div class="header-avatar">
+        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&q=80" alt="" onerror="this.remove()" />
+      </div>
+      <div>
+        <div class="header-name">Sara Lemaire</div>
+        <div class="header-tagline">Yoga · Paris 11e</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="tel:+33612345678" class="header-icon-btn" title="Appeler">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      </a>
+      <a href="mailto:sara@yoga-paris.fr" class="header-icon-btn" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a href="#services" class="header-cta">
+        Prendre RDV
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1600&q=85" alt="" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-avatar">
+      <div class="hero-avatar-init">S</div>
+      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=300&q=80" alt="" onerror="this.remove()" />
+    </div>
+    <div class="hero-text">
+      <span class="hero-cat">Yoga · Bien-être</span>
+      <div class="hero-name">Sara Lemaire</div>
+      <div class="hero-loc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Paris 11e
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-avail"><span class="hero-avail-dot"></span>Disponible</div>
+      <div class="hero-socials">
+        <a href="#" class="hero-icon-btn" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="hero-icon-btn" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+        </a>
+        <a href="#" class="hero-icon-btn" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <div class="hero-socials-sep"></div>
+        <a href="tel:+33612345678" class="hero-icon-btn" title="Appeler">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ STATS BAR ════════════════ -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <span class="stat-val">4.9 ★</span>
+      <span class="stat-label">382 avis Google</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">8 ans</span>
+      <span class="stat-label">d'expérience</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">500+</span>
+      <span class="stat-label">élèves formés</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">4</span>
+      <span class="stat-label">prestations</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<section class="about-section">
+  <div class="about-left">
+    <span class="about-kicker">À propos</span>
+    <p class="about-desc">Professeure de yoga certifiée Iyengar depuis 8 ans, Sara accompagne ses élèves vers une pratique profonde, bienveillante et adaptée à chacun. Que vous soyez débutant ou pratiquant confirmé, ses cours en studio ou en ligne s'adaptent à votre niveau et à vos objectifs.</p>
+  </div>
+  <div class="about-right">
+    <div class="google-bloc">
+      <div>
+        <div class="google-rating-big">4.9</div>
+      </div>
+      <div class="google-right">
+        <div class="google-stars">
+          <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="google-count">382 avis · Google</div>
+      </div>
+    </div>
+    <div class="contact-bloc">
+      <a href="tel:+33612345678" class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        06 12 34 56 78
+      </a>
+      <a href="mailto:sara@yoga-paris.fr" class="contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        sara@yoga-paris.fr
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div class="section-hdr">
+      <span class="section-title">Prestations</span>
+      <span class="section-count">4 disponibles</span>
+    </div>
+    <div class="svc-grid">
+
+      <button class="svc-card" onclick="openService(0)">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80" alt="" onerror="this.remove()" />
+          <span class="svc-card-badge-dur">75 min</span>
+          <span class="svc-card-badge-price">25 €</span>
+          <div class="svc-card-name">Cours collectif Iyengar</div>
+        </div>
+        <div class="svc-card-body">
+          <p class="svc-card-desc">Cours dynamique en groupe pour tous niveaux. Attention particulière à la posture et à la respiration. Tapis fournis.</p>
+          <div class="svc-card-foot">
+            <span class="svc-card-tag">Studio Paris 11e</span>
+            <span class="svc-card-tag">Sur place</span>
+            <span class="svc-card-cta">Réserver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span>
+          </div>
+        </div>
+      </button>
+
+      <button class="svc-card" onclick="openService(1)">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&q=80" alt="" onerror="this.remove()" />
+          <span class="svc-card-badge-dur">60 min</span>
+          <span class="svc-card-badge-price">75 €</span>
+          <div class="svc-card-name">Séance privée</div>
+        </div>
+        <div class="svc-card-body">
+          <p class="svc-card-desc">Accompagnement personnalisé selon vos objectifs. Flexibilité, récupération, gestion du stress. En studio ou en ligne.</p>
+          <div class="svc-card-foot">
+            <span class="svc-card-tag">Studio / Zoom</span>
+            <span class="svc-card-cta">Réserver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span>
+          </div>
+        </div>
+      </button>
+
+      <button class="svc-card" onclick="openService(2)">
+        <div class="svc-card-img">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&q=80" alt="" onerror="this.remove()" />
+          <span class="svc-card-badge-dur">3h</span>
+          <span class="svc-card-badge-price">60 €</span>
+          <div class="svc-card-name">Atelier week-end</div>
+        </div>
+        <div class="svc-card-body">
+          <p class="svc-card-desc">Atelier intensif pour approfondir votre pratique. Exploration des postures de fond et des techniques Pranayama.</p>
+          <div class="svc-card-foot">
+            <span class="svc-card-tag">Studio Paris 11e</span>
+            <span class="svc-card-cta">Réserver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span>
+          </div>
+        </div>
+      </button>
+
+      <button class="svc-card" onclick="openService(3)">
+        <div class="svc-card-img" style="background:linear-gradient(135deg,var(--accent),var(--accent-2))">
+          <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;color:rgba(255,255,255,.5)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span class="svc-card-badge-dur">60 min</span>
+          <span class="svc-card-badge-price">20 €</span>
+          <div class="svc-card-name">Cours en ligne</div>
+        </div>
+        <div class="svc-card-body">
+          <p class="svc-card-desc">Participez depuis chez vous via Zoom. Lien envoyé par email après réservation. Compatible smartphone et ordinateur.</p>
+          <div class="svc-card-foot">
+            <span class="svc-card-tag">Zoom</span>
+            <span class="svc-card-tag">En ligne</span>
+            <span class="svc-card-cta">Réserver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg></span>
+          </div>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="site-footer">
+  <div class="footer-logo"><span>V</span></div>
+  <span class="footer-text">Propulsé par Vitryne · vitryne.io</span>
+</footer>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/33612345678" class="wa-fab" target="_blank" rel="noopener" title="WhatsApp" id="wa-fab">
+  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- ════════════════ SERVICE DETAIL (page fixe) ════════════════ -->
+<div class="detail-page" id="detail-page">
+
+  <div class="detail-header">
+    <div class="detail-header-inner">
+      <button class="detail-back" onclick="closeService()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+        Retour
+      </button>
+      <span class="detail-header-title" id="dh-title"></span>
+      <span class="detail-header-price" id="dh-price"></span>
+    </div>
+  </div>
+
+  <div class="detail-hero" id="dh-hero">
+    <img id="dh-img" src="" alt="" onerror="this.style.display='none'" />
+    <div class="detail-hero-content">
+      <div class="detail-hero-name" id="dh-name"></div>
+      <div class="detail-hero-tags" id="dh-tags"></div>
+    </div>
+  </div>
+
+  <div class="detail-content">
+    <div class="detail-info">
+      <div class="detail-provider">
+        <div class="detail-prov-av">
+          <div class="detail-prov-av-init">S</div>
+          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=200&q=80" alt="" onerror="this.remove()" />
+        </div>
+        <div>
+          <div class="detail-prov-name">Sara Lemaire</div>
+          <div class="detail-prov-sub">★ 4.9 · 382 avis Google · Yoga Paris 11e</div>
+        </div>
+      </div>
+      <div class="detail-desc-title" id="d-desc-title"></div>
+      <p class="detail-desc" id="d-desc"></p>
+    </div>
+
+    <div class="detail-cal-col">
+      <div>
+        <div class="cal-title">Choisissez un créneau</div>
+        <div class="cal-sub">Sélectionnez une date puis un horaire</div>
+      </div>
+      <div>
+        <div class="cal-month-nav">
+          <button class="cal-nav-btn" onclick="prevMonth()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <span class="cal-month-label" id="cal-month-label">Mai 2026</span>
+          <button class="cal-nav-btn" onclick="nextMonth()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="cal-days-hdr" style="margin-top:10px">
+          <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        </div>
+        <div class="cal-days" id="cal-days"></div>
+      </div>
+      <div id="slots-wrap" style="display:none">
+        <div class="slots-label" style="margin-bottom:8px">Créneaux disponibles</div>
+        <div class="slots-list" id="slots-list"></div>
+      </div>
+      <button class="confirm-btn" id="confirm-btn" onclick="confirmBooking()">
+        Confirmer ce créneau
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
+      </button>
+      <p class="cancel-note">Annulation gratuite jusqu'à 24h avant le rendez-vous</p>
+      <div class="confirmed-box" id="confirmed-box">
+        <div class="confirmed-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div>
+          <div class="confirmed-t" id="confirmed-t">Réservation confirmée</div>
+          <div class="confirmed-s">Prototype — aucune réservation réelle créée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SERVICES=[
+  {name:'Cours collectif Iyengar',price:'25 €',duration:'75 min',location:'Studio Paris 11e',payment:'Paiement sur place',desc:'Un cours dynamique guidé par Sara avec une attention particulière à la posture et à la respiration. Convient à tous niveaux. Tapis fournis sur place.',img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1400&q=85',slots:['9h00','10h30','18h30']},
+  {name:'Séance privée',price:'75 €',duration:'60 min',location:'Studio ou Zoom',payment:'Paiement sur place',desc:'Accompagnement personnalisé adapté à vos objectifs : flexibilité, récupération, gestion du stress. En studio ou par visioconférence selon votre préférence.',img:'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1400&q=85',slots:['8h00','11h00','16h00']},
+  {name:'Atelier week-end',price:'60 €',duration:'3h',location:'Studio Paris 11e',payment:'Paiement sur place',desc:'Un atelier intensif de 3 heures pour approfondir votre pratique. Exploration des postures de fond et des techniques de respiration Pranayama.',img:'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1400&q=85',slots:['10h00','14h00']},
+  {name:'Cours en ligne',price:'20 €',duration:'60 min',location:'Zoom',payment:'Paiement en ligne',desc:'Participez depuis chez vous via Zoom. Le lien de connexion vous est envoyé par email après réservation. Compatible smartphone et ordinateur.',img:'',slots:['7h30','12h00','19h00','20h30']},
+];
+
+const MONTHS=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+const AVAIL=[2,3,5,9,10,12,16,17,19,20,22,23,26];
+let calYear=2026,calMonth=4,selDay=null,selSlot=null,curIdx=0;
+
+function renderCal(){
+  document.getElementById('cal-month-label').textContent=`${MONTHS[calMonth]} ${calYear}`;
+  const fd=new Date(calYear,calMonth,1).getDay(),dim=new Date(calYear,calMonth+1,0).getDate();
+  const off=fd===0?6:fd-1,prev=new Date(calYear,calMonth,0).getDate();
+  const g=document.getElementById('cal-days');g.innerHTML='';
+  for(let i=off-1;i>=0;i--){const d=document.createElement('div');d.className='cal-day other-month';d.textContent=prev-i;g.appendChild(d)}
+  for(let day=1;day<=dim;day++){
+    const ok=AVAIL.includes(day),el=document.createElement(ok?'button':'div');
+    el.className='cal-day'+(ok?' available':'')+(selDay===day?' active':'')+(day===15&&calMonth===4&&calYear===2026?' today-m':'');
+    el.textContent=day;if(ok)el.onclick=()=>pickDay(day);g.appendChild(el);
+  }
+  const tot=off+dim,rem=tot%7===0?0:7-(tot%7);
+  for(let i=1;i<=rem;i++){const d=document.createElement('div');d.className='cal-day other-month';d.textContent=i;g.appendChild(d)}
+}
+function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--}selDay=null;selSlot=null;renderCal();document.getElementById('slots-wrap').style.display='none';updateBtn()}
+function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++}selDay=null;selSlot=null;renderCal();document.getElementById('slots-wrap').style.display='none';updateBtn()}
+function pickDay(d){selDay=d;selSlot=null;renderCal();renderSlots();updateBtn()}
+function renderSlots(){
+  const svc=SERVICES[curIdx];
+  const w=document.getElementById('slots-wrap'),l=document.getElementById('slots-list');
+  w.style.display='block';l.innerHTML='';
+  svc.slots.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='slot-btn'+(selSlot===i?' active':'');
+    b.innerHTML=`<span class="slot-radio"></span><span class="slot-time">${MONTHS[calMonth].substring(0,3)} ${selDay} · ${t}</span><span class="slot-free">Libre</span>`;
+    b.onclick=()=>{selSlot=i;renderSlots();updateBtn()};l.appendChild(b);
+  });
+}
+function updateBtn(){document.getElementById('confirm-btn').classList.toggle('ready',selDay!==null&&selSlot!==null)}
+function confirmBooking(){
+  if(!selDay||selSlot===null)return;
+  const svc=SERVICES[curIdx];
+  document.getElementById('confirmed-t').textContent=`${MONTHS[calMonth].substring(0,3)} ${selDay} · ${svc.slots[selSlot]} · ${svc.name}`;
+  document.getElementById('confirmed-box').classList.add('show');
+  document.getElementById('confirm-btn').style.display='none';
+}
+function openService(idx){
+  if(document.activeElement)document.activeElement.blur();
+  curIdx=idx;const svc=SERVICES[idx];
+  document.getElementById('dh-title').textContent=svc.name;
+  document.getElementById('dh-price').textContent=svc.price;
+  document.getElementById('dh-name').textContent=svc.name;
+  const img=document.getElementById('dh-img');
+  if(svc.img){img.src=svc.img;img.style.display=''}else img.style.display='none';
+  const tags=document.getElementById('dh-tags');tags.innerHTML='';
+  [svc.duration,svc.location,svc.payment].forEach(t=>{const s=document.createElement('span');s.className='detail-hero-tag';s.textContent=t;tags.appendChild(s)});
+  document.getElementById('d-desc-title').textContent=svc.name;
+  document.getElementById('d-desc').textContent=svc.desc;
+  calYear=2026;calMonth=4;selDay=null;selSlot=null;
+  renderCal();
+  document.getElementById('slots-wrap').style.display='none';
+  document.getElementById('confirm-btn').style.display='';
+  document.getElementById('confirmed-box').classList.remove('show');
+  updateBtn();
+  document.getElementById('detail-page').classList.add('open');
+  document.getElementById('wa-fab').style.display='none';
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function closeService(){
+  document.getElementById('detail-page').classList.remove('open');
+  document.getElementById('wa-fab').style.display='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeService()});
+renderCal();
+</script>
+</body>
+</html>
