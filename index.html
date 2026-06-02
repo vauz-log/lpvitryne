@@ -176,16 +176,12 @@ ul{list-style:none}
 
 /* Email capture */
 .hero-capture{display:flex;gap:10px;max-width:460px;margin:0 auto 14px;animation:fadeUp .7s .24s both}
-.hero-capture input{flex:1;padding:14px 18px;border-radius:var(--r-md);border:1px solid #D4CFC8;background:var(--white);color:var(--charcoal);font-family:var(--font-body);font-size:15px;transition:all .4s var(--ease-out-expo);outline:none}
-.hero-capture input::placeholder{color:var(--text-tertiary)}
-.hero-capture input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);transform:translateY(-1px)}
-.hero-capture button{padding:14px 28px;border-radius:var(--r-md);background:var(--charcoal);color:#fff;font-weight:600;font-size:15px;white-space:nowrap;transition:all .3s var(--ease-out-expo);display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
-.hero-capture button::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,151,106,.15),transparent);opacity:0;transition:opacity .3s}
-.hero-capture button:hover{background:#333;transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,26,26,.2)}
-.hero-capture button:hover::after{opacity:1}
-.hero-capture button:active{transform:translateY(0)}
-.hero-capture button svg{transition:transform .3s var(--ease-out-expo)}
-.hero-capture button:hover svg{transform:translateX(3px)}
+.hero-capture-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:var(--r-md);background:var(--charcoal);color:#fff;font-weight:600;font-size:15px;white-space:nowrap;text-decoration:none;font-family:var(--font-body);transition:all .3s var(--ease-out-expo);position:relative;overflow:hidden}
+.hero-capture-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,151,106,.15),transparent);opacity:0;transition:opacity .3s}
+.hero-capture-btn:hover{background:#333;transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,26,26,.2)}
+.hero-capture-btn:hover::after{opacity:1}
+.hero-capture-btn:hover svg{transform:translateX(3px)}
+.hero-capture-btn svg{transition:transform .3s var(--ease-out-expo)}
 
 .hero-meta{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--text-tertiary);animation:fadeUp .7s .3s both}
 .hero-meta span{display:flex;align-items:center;gap:5px;transition:color .3s}
@@ -856,13 +852,12 @@ ul{list-style:none}
 .final-cta h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.4rem);color:#fff;line-height:1.2;margin-bottom:16px;position:relative}
 .final-cta .final-sub{font-size:16px;color:var(--text-on-dark-muted);max-width:480px;margin:0 auto 32px;line-height:1.7;position:relative}
 .final-capture{display:flex;gap:10px;max-width:440px;margin:0 auto 14px;position:relative}
-.final-capture input{flex:1;padding:14px 18px;border-radius:var(--r-md);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-family:var(--font-body);font-size:15px;outline:none;transition:all .4s var(--ease-out-expo)}
-.final-capture input::placeholder{color:var(--text-on-dark-muted)}
-.final-capture input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);transform:translateY(-1px)}
-.final-capture button{padding:14px 28px;border-radius:var(--r-md);background:var(--gold);color:#fff;font-weight:600;font-size:15px;white-space:nowrap;transition:all .3s var(--ease-out-expo);position:relative;overflow:hidden}
-.final-capture button::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
-.final-capture button:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 6px 24px var(--gold-glow)}
-.final-capture button:hover::before{opacity:1}
+.final-capture-btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:var(--r-md);background:var(--gold);color:#fff;font-weight:600;font-size:15px;white-space:nowrap;text-decoration:none;font-family:var(--font-body);transition:all .3s var(--ease-out-expo);position:relative;overflow:hidden}
+.final-capture-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
+.final-capture-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 6px 24px var(--gold-glow)}
+.final-capture-btn:hover::before{opacity:1}
+.final-capture-btn svg{transition:transform .3s var(--ease-out-expo)}
+.final-capture-btn:hover svg{transform:translateX(3px)}
 .final-meta{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.35);position:relative}
 .final-meta span{display:flex;align-items:center;gap:5px;transition:color .3s}
 .final-meta span:hover{color:rgba(255,255,255,.5)}
@@ -1414,7 +1409,7 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
   .mobile-menu a{font-size:1.3rem}
 }
 </style>
-<script src="password-gate.js"></script>
+
 </head>
 <body>
 
@@ -1474,11 +1469,12 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
 
       <p class="hero-for">Pour <strong>coachs, thérapeutes, consultants</strong> et pros du service sur rendez-vous.</p>
 
-      <!-- Real email capture -->
-      <form class="hero-capture" onsubmit="handleFormSubmit(event, this)">
-        <input type="email" placeholder="votre@email.com" required>
-        <button type="submit">Démarrer gratuitement <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-      </form>
+      <div class="hero-capture" style="justify-content:center">
+        <a href="https://app.vitryne.io" target="_blank" rel="noopener noreferrer" class="hero-capture-btn">
+          Créer ma vitrine gratuitement
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
 
       <div class="hero-meta">
         <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Gratuit, sans CB</span>
@@ -2964,10 +2960,12 @@ footer{background:var(--cream);border-top:1px solid var(--border);padding:48px 0
         <div class="final-cta-orb2"></div>
         <h2>Vos clients réservent.<br>Vous faites votre métier.</h2>
         <p class="final-sub">Rejoignez les pros du service qui ont arrêté de gérer leurs RDV à la main. Gratuit, sans carte bancaire.</p>
-        <form class="final-capture" onsubmit="handleFormSubmit(event, this)">
-          <input type="email" placeholder="votre@email.com" required>
-          <button type="submit">Créer mon compte</button>
-        </form>
+        <div class="final-capture" style="justify-content:center">
+          <a href="https://app.vitryne.io" target="_blank" rel="noopener noreferrer" class="final-capture-btn">
+            Créer mon compte gratuitement
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
         <div class="final-meta">
           <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Gratuit pour toujours sur Start</span>
           <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Aucune carte bancaire</span>
